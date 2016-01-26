@@ -1,0 +1,79 @@
+const data = [
+  {
+    "name":"UF",
+    "elementarySectors":["UF"],
+    "canAccept":[
+      "KF",
+      "KDF"
+    ],
+    "canGive":[]
+  },
+  {
+    "name":"KF",
+    "elementarySectors":["KF"],
+    "canAccept":[
+      "KD",
+      "UF"
+    ],
+    "canGive":[]
+  },
+  {
+    "name":"KD",
+    "elementarySectors":["KD"],
+    "canAccept":[
+      "2F",
+      "KF"
+    ],
+    "canGive":[]
+  },
+  {
+    "name":"2F",
+    "elementarySectors":[
+      "UF",
+      "KF"
+    ],
+    "canAccept":[
+      "KD"
+    ],
+    "canGive":[
+      "UF",
+      "KF"
+    ]
+  },
+  {
+    "name":"KD2F",
+    "elementarySectors":[
+      "UF",
+      "KF",
+      "KD"
+    ],
+    "canAccept":[
+    ],
+    "canGive":[
+      "2F",
+      "KDF",
+      "KD"
+    ]
+  },
+  {
+    "name":"KDF",
+    "elementarySectors":[
+      "KF",
+      "KD"
+    ],
+    "canAccept":[
+      "UF"
+    ],
+    "canGive":[
+      "KD",
+      "KF"
+    ]
+  }
+];
+
+export default data;
+
+export function getElementary() {
+  let i = 0;
+  return data.filter((s) => s.elementarySectors.length === 1);
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "name":"E",
+    "elementarySectors":["E"],
+    "canAccept":[
+      "SE",
+      "4E"
+    ],
+    "canGive":[]
+  },
+  {
+    "name":"SE",
+    "elementarySectors":["SE"],
+    "canAccept":[
+      "E",
+      "4H"
+    ],
+    "canGive":[]
+  },
+  {
+    "name":"FIR",
+    "elementarySectors":[
+      "E",
+      "SE"
+    ],
+    "canAccept":[
+      "4EH"
+    ],
+    "canGive":[
+      "E",
+      "SE"
+    ]
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "id": 20,
+    "ipAddr": [],
+    "disabled": false,
+    "suggestions": {
+      "filteredSectors": ["URMN"],
+      "preferenceOrder": ["KD", "2F"]
+    }
+  },
+  {
+    "id": 21,
+    "ipAddr": [],
+    "disabled": false,
+    "suggestions": {
+      "filteredSectors": ["URMN"],
+      "preferenceOrder": ["4H"]
+    }
+  },
+  {
+    "id": 22,
+    "ipAddr": [],
+    "disabled": false,
+    "suggestions": {
+      "filteredSectors": ["URMN"],
+      "preferenceOrder": ["4H", "5EH"]
+    }
+  },
+  {
+    "id": 23,
+    "ipAddr": [],
+    "disabled": false,
+    "suggestions": {
+      "filteredSectors": ["URMN", "KD2F"],
+      "preferenceOrder": ["FIR"]
+    }
+  },
+  {
+    "id": 24,
+    "ipAddr": [],
+    "disabled": false,
+    "suggestions": {
+      "filteredSectors": ["URMN"],
+      "preferenceOrder": ["KD2F", "4E"]
+    }
+  },
+  {
+    "id": 25,
+    "ipAddr": [],
+    "disabled": false,
+    "suggestions": {
+      "filteredSectors": ["URMN"],
+      "preferenceOrder": ["5E", "4EH"]
+    }
+  },
+  {
+    "id": 26,
+    "ipAddr": [],
+    "disabled": false,
+    "suggestions": {
+      "filteredSectors": ["URMN"],
+      "preferenceOrder": ["5E", "4EH"]
+    }
+  },
+  {
+    "id": 27,
+    "ipAddr": [],
+    "disabled": false,
+    "suggestions": {
+      "filteredSectors": ["URMN", "4H", "FIR"],
+      "preferenceOrder": ["KD2F"]
+    }
+  }
+]

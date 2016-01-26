@@ -1,0 +1,34 @@
+[
+  {
+    "name":"RMS",
+    "elementarySectors":[
+      "UE",
+      "XE",
+      "KE",
+      "HE",
+      "UH",
+      "XH",
+      "KH",
+      "HH",
+      "UF",
+      "KF",
+      "KD",
+      "E",
+      "SE",
+      "UR",
+      "XR",
+      "KR",
+      "YR",
+      "HR",
+      "UB",
+      "UN",
+      "KN",
+      "HN"
+    ],
+    "canAccept":[],
+    "canGive":[
+      "URMN",
+      "KDFE"
+    ]
+  }
+]
