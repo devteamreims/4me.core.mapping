@@ -46,7 +46,7 @@ export default class CwpTree {
 
   getById(cwpId = 0) {
     console.log('Getting with id ', cwpId);
-    return this.tree.find((cwp) => cwp.id === cwpId);
+    return this.tree.find((cwp) => cwp.id === parseInt(cwpId));
   }
 
   getByType(type = '') {

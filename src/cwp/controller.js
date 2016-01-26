@@ -15,11 +15,16 @@ function getAll(req, res) {
 }
 
 function getById(req, res) {
-  console.log(req.params.cwpId);
+  if(!(let r = cwpTree.getById(req.params.cwpId)))
   res.send(cwpTree.getById(req.params.cwpId));
+}
+
+function getMine(req, res) {
+  
 }
 
 export default {
   getAll: getAll,
-  getById: getById
+  getById: getById,
+  getMine: getMine
 };
