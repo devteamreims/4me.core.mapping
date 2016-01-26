@@ -20,7 +20,7 @@ function getById(req, res) {
 }
 
 function getMine(req, res) {
-  
+  res.send(cwpTree.getById(22));
 }
 
 export default {
