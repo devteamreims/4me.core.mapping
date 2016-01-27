@@ -3,18 +3,20 @@ import mySocket from './socket';
 
 import {getSectorRouter} from './sector';
 import {getCwpRouter} from './cwp';
+import {getMappingRouter} from './mapping';
 
 let routes = function(socketIo) {
-  
+
   // Initialize our socketIo
   mySocket.init(socketIo);
-  
+
   let router = express.Router();
 
 
   router.use('/sectors', getSectorRouter());
   router.use('/cwp', getCwpRouter());
-  
+  router.use('/mapping', getMappingRouter());
+
   /*
   // Load our API
   var sectors = require('./sectors');

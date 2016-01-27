@@ -16,7 +16,7 @@ let sectorTree;
 
 /* This is fully asynchronous */
 
-export default class Map {
+class Map {
   // Singleton pattern
   constructor() {
     if(!instance) {
@@ -26,7 +26,7 @@ export default class Map {
           instance = self;
           return instance;
         })
-        .catch((err) => { throw new Error('Failed to bootstrap Map')});
+        .catch((err) => { debug('Failed to instanciate Map'); throw err; });
     }
     return Promise.resolve(instance);
   }
@@ -43,16 +43,32 @@ export default class Map {
       return Promise.reject(ex);
     }
 
-    return db.get('map').then((m) => {
-      self.map = m;
-      return self;
-    });
+    return self._getFromDb();
 
-    return Promise.resolve(self);
+  }
 
+  _getFromDb() {
+    let self = this;
+    return db.get('map')
+      .then((m) => {
+        self.map = m;
+        return self;
+      })
+      .catch((err) => {
+        if(err.notFound) {
+          console.log('Data not found in the db');
+          throw err;
+        } else {
+          throw err;
+        }
+      });
   }
 }
 
 export function getInstance() {
   return new Map();
 }
+
+export default {
+  getInstance: getInstance
+};
