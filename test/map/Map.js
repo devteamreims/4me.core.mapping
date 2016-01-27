@@ -12,36 +12,22 @@ const moduleStubs = {
 };
 
 describe('Map', function() {
-  it('should instantiate', (done) => {
+  it('should instantiate', () => {
     let Map = proxyquire(modulePath, moduleStubs);
 
-    Map.getInstance().then((map) => {
-      map.constructor.name.should.eql('Map');
-      done();
-    })
-    .catch(() => {
-      (true).should.eql(false);
-      done();
-    });
+    return Map.getInstance().then((map) => map.constructor.name.should.eql('Map'));
   });
 
-  it('should be a singleton', (done) => {
+  it('should be a singleton', () => {
     let Map = proxyquire(modulePath, moduleStubs);
 
     let map1, map2;
 
-    Map.getInstance()
-    .then((m) => map1 = m)
-    .then(() => Map.getInstance())
-    .then((m) => map2 = m)
-    .then(() => {
-      map1.should.eql(map2);
-      done();
-    })
-    .catch(() => {
-      (true).should.eql(false);
-      done();
-    });
+    return Map.getInstance()
+      .then((m) => map1 = m)
+      .then(() => Map.getInstance())
+      .then((m) => map2 = m)
+      .then(() => map1.should.eql(map2));
   });
 
   describe('constructor', () => {
@@ -51,7 +37,7 @@ describe('Map', function() {
       Map.getInstance.should.be.a('function');
     });
 
-    it('should instantiate CwpTree and SectorTree', (done) => {
+    it('should instantiate CwpTree and SectorTree', () => {
       let cwpStub = sinon.spy(function() {
         return new CwpTreeStub.default(...arguments);
       });
@@ -71,11 +57,10 @@ describe('Map', function() {
 
       let Map = proxyquire(modulePath, stubs);
 
-      Map.getInstance().then(() => {
-        cwpStub.should.have.been.calledOnce;
-        sectorStub.should.have.been.calledOnce;
-        done();
-      });
+      return Map.getInstance().then(() => [
+        cwpStub.should.have.been.calledOnce,
+        sectorStub.should.have.been.calledOnce
+      ]);
     });
 
     it('should throw with a failed bootstrap', () => {
@@ -91,10 +76,10 @@ describe('Map', function() {
 
       let Map = proxyquire(modulePath, stubs);
 
-      Map.getInstance().should.eventually.be.rejected;
+      return Map.getInstance().should.eventually.be.rejected;
     });
 
-    it('should hit the database', (done) => {
+    it('should hit the database', () => {
       let r = {
         get: sinon.stub().resolves({}),
         put: sinon.stub().resolves({})
@@ -109,20 +94,21 @@ describe('Map', function() {
 
       let Map = proxyquire(modulePath, stubs);
 
-      Map.getInstance().then(() => {
-        dbStub().get.should.have.been.called;
-        done();
-      });
+      return Map.getInstance().then(() => dbStub().get.should.have.been.called);
+
     });
   });
 
   describe('instanciated', () => {
     let map;
 
-    beforeEach((done) => {
+    beforeEach(() => {
       let Map = proxyquire(modulePath, moduleStubs);
 
-      map = Map.getInstance().then(() => done());
+      return Map.getInstance().then((m) => {
+        map = m;
+        return map;
+      });
     });
 
   });
