@@ -56,8 +56,8 @@ class Map {
       })
       .catch((err) => {
         if(err.notFound) {
-          console.log('Data not found in the db');
-          throw err;
+          debug('Data not found in the database');
+          return self._createEmptyMap();
         } else {
           throw err;
         }
@@ -84,6 +84,9 @@ class Map {
 
     let sectorsToBind = sectors.map((s) => s.name);
 
+    let sector = sectorTree.getFromElementary(sectorsToBind);
+    console.log(sector);
+
     let sectorName = sectorTree.getFromElementary(sectorsToBind).name || '';
 
     let mappingItem = {
@@ -96,7 +99,7 @@ class Map {
 
     self.map = [mappingItem];
 
-    return self.store();
+    return self.store().then(() => self);
   }
 
   static isValid(map) {
