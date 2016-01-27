@@ -1,7 +1,7 @@
 import {APPDIR} from '../settings'
 // Stubs
 import * as CwpTreeStub from '../stubs/cwp/Tree';
-import * as SectorTreeStub from '../stubs/cwp/Tree';
+import * as SectorTreeStub from '../stubs/sector/Tree';
 import * as dbStub from '../stubs/database';
 
 const modulePath = APPDIR + 'mapping/Map';
@@ -97,6 +97,111 @@ describe('Map', function() {
       return Map.getInstance().then(() => dbStub().get.should.have.been.called);
 
     });
+
+    describe('with empty db', () => {
+      it('should fail if no CWP is available', () => {
+        // Stub dependencies
+        let r = {
+          get: sinon.stub().resolves({}),
+          put: sinon.stub().resolves({})
+        };
+
+        let dbStub = () => r;
+
+        let cwpTreeStub = function() {
+          return {
+            getByType: () => []
+          };
+        };
+
+        let stubs = Object.assign(_.cloneDeep(moduleStubs), {
+          '../database': {
+            default: dbStub
+          },
+          '../cwp/Tree': {
+            default: cwpTreeStub
+          }
+        });
+
+        let Map = proxyquire(modulePath, stubs);
+        return Map.getInstance().then((m) => {
+          return m._createEmptyMap().should.be.rejectedWith(/cwp/i);
+        });
+      });
+
+      it('should fail if no sector is available', () => {
+        // Stub dependencies
+        let r = {
+          get: sinon.stub().resolves({}),
+          put: sinon.stub().resolves({})
+        };
+
+        let dbStub = () => r;
+
+        let cwpTreeStub = function() {
+          return {
+            getByType: () => []
+          };
+        };
+
+        let sectorTreeStub = function() {
+          return {
+            getElementary: () => []
+          };
+        };
+
+        let stubs = Object.assign(_.cloneDeep(moduleStubs), {
+          '../database': {
+            default: dbStub
+          },
+          '../cwp/Tree': {
+            default: cwpTreeStub
+          },
+          '../sector/Tree': {
+            default: sectorTreeStub
+          }
+        });
+
+        let Map = proxyquire(modulePath, stubs);
+        return Map.getInstance().then((m) => {
+          return m._createEmptyMap().should.be.rejectedWith(/sector/i);
+        });
+      });
+
+      it('should be able to create an empty map', () => {
+        // Stub dependencies
+        let r = {
+          get: sinon.stub().resolves({}),
+          put: sinon.stub().resolves({})
+        };
+
+        let dbStub = () => r;
+
+        let cwpTreeStub = function() {
+          return {
+            getByType: () => [{id: 1}, {id: 2}]
+          };
+        };
+
+        let stubs = Object.assign(_.cloneDeep(moduleStubs), {
+          '../database': {
+            default: dbStub
+          },
+          '../cwp/Tree': {
+            default: cwpTreeStub
+          }
+        });
+
+        let Map = proxyquire(modulePath, stubs);
+        return Map.getInstance().then((m) => {
+          return [
+            m._createEmptyMap().should.be.resolved,
+            r.put.should.have.been.called
+          ];
+        });
+      });
+    });
+
   });
 
   describe('instanciated', () => {
@@ -111,5 +216,18 @@ describe('Map', function() {
       });
     });
 
+
+
+  });
+
+  describe('static methods', () => {
+    let Map;
+    beforeEach(() => {
+      Map = proxyquire(modulePath, moduleStubs).default;
+    });
+
+    it('should have a isValid method', () => {
+      Map.isValid.should.be.a('function');
+    });
   });
 });

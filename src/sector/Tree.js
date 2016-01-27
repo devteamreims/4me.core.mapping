@@ -22,7 +22,7 @@ export default class SectorTree {
 
     self.elementary = [];
     debug('Bootstraping SectorTree');
-    
+
     if(!(self.tree = sectorBootstrap())) {
       throw new Error('Failed loading sector tree');
     }
@@ -55,9 +55,13 @@ export default class SectorTree {
   getElementary() {
     return this.tree.filter((s) => s.elementarySectors.length === 1);
   }
-  
+
   getSector(sectorName = '') {
     return this.tree.find((s) => s.name === sectorName) || null;
+  }
+
+  getFromElementary(elementarySectors = []) {
+    return this.tree.find((s) => s.elementarySectors.sort() === elementarySectors.sort());
   }
 
 }

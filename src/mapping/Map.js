@@ -63,6 +63,49 @@ class Map {
         }
       });
   }
+
+  _createEmptyMap() {
+    let self = this;
+    debug('Creating a valid map');
+
+    // Let's find a CWP to bind every sector
+    let cwp = _.find(cwpTree.getByType('cwp'));
+    if(!cwp || !cwp.id) {
+      return Promise.reject(new Error('Could not find a single CWP to bind sectors'));
+    }
+
+    // Find every single sector
+    let sectors = sectorTree.getElementary();
+    if(!sectors || sectors.length === 0) {
+      return Promise.reject(new Error(`Could not find a single sector to bind to ${cwp.id}`));
+    }
+
+    debug(`Assigning all sectors to CWP #${cwp.id}`);
+
+    let sectorsToBind = sectors.map((s) => s.name);
+
+    let sectorName = sectorTree.getFromElementary(sectorsToBind).name || '';
+
+    let mappingItem = {
+      cwpId: cwp.id,
+      sectors: _.clone(sectorsToBind.slice()),
+      sectorName: sectorName
+    };
+
+    debug(`CWP #${cwp.id} is now ${sectorName}`);
+
+    self.map = [mappingItem];
+
+    return self.store();
+  }
+
+  static isValid(map) {
+    return true;
+  }
+
+  store() {
+    return db.put('map', this.map);
+  }
 }
 
 export function getInstance() {
@@ -70,5 +113,6 @@ export function getInstance() {
 }
 
 export default {
-  getInstance: getInstance
+  getInstance: getInstance,
+  isValid: Map.isValid
 };
