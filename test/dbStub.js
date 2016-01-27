@@ -13,8 +13,6 @@ api.get = function(key) {
   return Promise.resolve(value);
 };
 
-var ex = function(args) {
+export default function(args) {
   return api;
 };
-
-export default ex;
