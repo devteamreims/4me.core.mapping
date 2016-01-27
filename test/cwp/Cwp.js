@@ -5,7 +5,8 @@ let validCwpArguments = {
   id: 20,
   ipAddr: [],
   disabled: false,
-  "suggestions": {
+  type: 'cwp',
+  suggestions: {
     "filteredSectors": ["URMN"],
     "preferenceOrder": ["KD", "2F"]
   }
@@ -29,6 +30,7 @@ describe('Cwp', function() {
       cwp.id.should.eql(parseInt(validCwpArguments.id));
       cwp.ipAddr.should.deep.eql(validCwpArguments.ipAddr);
       cwp.disabled.should.eql(validCwpArguments.disabled);
+      cwp.type.should.eql(validCwpArguments.type);
       cwp.suggestions.should.deep.eql(validCwpArguments.suggestions);
     });
 
@@ -41,9 +43,43 @@ describe('Cwp', function() {
       let args = _.cloneDeep(validCwpArguments);
       args.id = undefined;
       expect(() => new Cwp(args)).to.throw(/without an id/);
-    
+
       args.id = 0;
       expect(() => new Cwp(args)).to.throw(/without an id/);
+    });
+
+    it('should have proper fallbacks', () => {
+      let args = _.cloneDeep(validCwpArguments);
+      args.ipAddr = undefined;
+      let cwp = new Cwp(args);
+
+      cwp.ipAddr.should.eql([]);
+
+      args = _.cloneDeep(validCwpArguments);
+      args.type = undefined;
+      cwp = new Cwp(args);
+      cwp.type.should.eql('cwp');
+
+    });
+
+    it('should merge only specific fields for suggestions', () => {
+      let args = _.cloneDeep(validCwpArguments);
+      args.suggestions = undefined;
+
+      let cwp = new Cwp(args);
+
+      cwp.suggestions.filteredSectors.should.eql([]);
+      cwp.suggestions.preferenceOrder.should.eql([]);
+
+      args.suggestions = {
+        filteredSectors: ['UR', 'XR'],
+        foo: 'bar'
+      };
+
+      cwp = new Cwp(args);
+
+      cwp.suggestions.should.not.have.keys('foo');
+
     });
 
   });

@@ -26,12 +26,19 @@ export default class Cwp {
       debug('Constructing CWP %d without suggestions', parseInt(obj.id));
     }
 
+    if(!obj.type) {
+      debug('Constructing CWP %d without type', parseInt(obj.id));
+    }
+
     this.id = parseInt(obj.id);
     this.name = obj.name || 'P' + this.id;
     this.disabled = !!obj.disabled;
+    this.type = obj.type || 'cwp';
     this.ipAddr = obj.ipAddr || [];
-    this.suggestions = Object.assign({filteredSectors: [], preferenceOrder: []}, _.cloneDeep(obj.suggestions));
-
+    this.suggestions = _.pick(
+      Object.assign({filteredSectors: [], preferenceOrder: []}, _.cloneDeep(obj.suggestions)),
+      ['filteredSectors', 'preferenceOrder']
+    );
   }
 
 };
