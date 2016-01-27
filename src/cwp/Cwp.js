@@ -41,4 +41,16 @@ export default class Cwp {
     );
   }
 
+  isCwp() {
+    return this.type === 'cwp';
+  }
+
+  isSupervisor() {
+    return this.type === 'supervisor';
+  }
+
+  isFlowManager() {
+    return this.type === 'flow-manager';
+  }
+
 };

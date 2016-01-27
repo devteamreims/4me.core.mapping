@@ -82,6 +82,36 @@ describe('Cwp', function() {
 
     });
 
+    it('should have identification methods', () => {
+      let cwp = new Cwp(validCwpArguments);
+
+      cwp.isCwp.should.be.a('function');
+      cwp.isFlowManager.should.be.a('function');
+      cwp.isSupervisor.should.be.a('function');
+
+      cwp.isCwp().should.eql(true);
+      cwp.isFlowManager().should.eql(false);
+      cwp.isSupervisor().should.eql(false);
+
+      let args = _.cloneDeep(validCwpArguments);
+      args.type = 'supervisor';
+      cwp = new Cwp(args);
+
+      cwp.isCwp().should.eql(false);
+      cwp.isFlowManager().should.eql(false);
+      cwp.isSupervisor().should.eql(true);
+
+      args = _.cloneDeep(validCwpArguments);
+      args.type = 'flow-manager';
+      cwp = new Cwp(args);
+
+      cwp.isCwp().should.eql(false);
+      cwp.isFlowManager().should.eql(true);
+      cwp.isSupervisor().should.eql(false);
+
+    });
+
+
   });
 
 });
