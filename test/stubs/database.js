@@ -5,13 +5,13 @@
 
 let api = {};
 
-api.put = function(key, value) {
+api.put = sinon.spy(function(key, value) {
   return Promise.resolve(value);
-};
+});
 
-api.get = function(key) {
-  return Promise.resolve(value);
-};
+api.get = sinon.spy(function(key) {
+  return Promise.resolve(key);
+});
 
 export default function(args) {
   return api;
