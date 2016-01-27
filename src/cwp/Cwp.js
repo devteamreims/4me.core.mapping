@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 const debug = d('4me.cwp.Cwp');
 
-const validTypes = ['cwp', 'supervisor', 'flow-manager'];
+export const validTypes = ['cwp', 'supervisor', 'flow-manager'];
 
 export default class Cwp {
 

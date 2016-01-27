@@ -9,7 +9,7 @@ export function getCwpRouter() {
   let router = express.Router();
 
   router.get('/', cwpController.getAll);
-  router.get('/:cwpId', cwpController.getById);
+  router.get('/:cwpId([0-9]+)', cwpController.getById);
 
   return router;
 };

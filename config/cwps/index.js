@@ -1,7 +1,8 @@
-var westCwp = require('./west.json');
-var eastCwp = require('./east.json');
-var nightCwp = require('./night.json');
+let westCwp = require('./west.json');
+let eastCwp = require('./east.json');
+let nightCwp = require('./night.json');
+let specials = require('./specials.json');
 
-var RMS = westCwp.concat(eastCwp).concat(nightCwp);
+let RMS = westCwp.concat(eastCwp).concat(nightCwp).concat(specials);
 
 module.exports = RMS;

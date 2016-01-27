@@ -3,6 +3,7 @@ import d from 'debug';
 const debug = d('4me.cwp.Tree');
 
 import Cwp from './Cwp';
+import {validTypes} from './Cwp';
 import cwpBootstrap from './bootstrap';
 
 let instance = null;
@@ -21,13 +22,13 @@ export default class CwpTree {
     var self = this;
 
     debug('Bootstraping CwpTree');
-    
+
     let loadedData = cwpBootstrap();
 
     if(!loadedData) {
       throw new Error('Failed to load CWP data');
     }
-    
+
     self.tree = [];
 
     loadedData.forEach((s) => {
@@ -49,7 +50,10 @@ export default class CwpTree {
     return this.tree.find((cwp) => cwp.id === parseInt(cwpId));
   }
 
-  getByType(type = '') {
+  getByType(type = 'cwp') {
+    if(validTypes.indexOf(type) === -1) {
+      throw new Error(`${type} is not a valid cwp type`);
+    }
     return this.tree.filter((cwp) => cwp.type === type);
   }
 

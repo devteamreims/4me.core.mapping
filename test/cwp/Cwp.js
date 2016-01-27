@@ -5,6 +5,7 @@ let validCwpArguments = {
   id: 20,
   ipAddr: [],
   disabled: false,
+  name: 'POS20',
   type: 'cwp',
   suggestions: {
     "filteredSectors": ["URMN"],
@@ -28,6 +29,7 @@ describe('Cwp', function() {
       let cwp = new Cwp(validCwpArguments);
       cwp.constructor.name.should.eql('Cwp');
       cwp.id.should.eql(parseInt(validCwpArguments.id));
+      cwp.name.should.eql(validCwpArguments.name);
       cwp.ipAddr.should.deep.eql(validCwpArguments.ipAddr);
       cwp.disabled.should.eql(validCwpArguments.disabled);
       cwp.type.should.eql(validCwpArguments.type);
