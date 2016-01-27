@@ -2,6 +2,7 @@ import chai from 'chai';
 import _ from 'lodash';
 import sinonChai from 'sinon-chai';
 import sinon from 'sinon';
+import Promise from 'bluebird';
 
 
 
@@ -16,8 +17,8 @@ chai.use(sinonChai);
 global._ = _;
 //global.should = should;
 global.expect = chai.expect;
+global.Promise = Promise;
 global.proxyquire = require('proxyquire').noPreserveCache();
-global.dbStub = require('./dbStub');
 global.socketStub = require('./socket.stub');
 global.sinon = sinon;
 
