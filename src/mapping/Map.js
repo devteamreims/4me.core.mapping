@@ -11,8 +11,8 @@ import database from '../database';
 let instance = null;
 let db = database();
 
-let cwpTree;
-let sectorTree;
+let cwpTree = new CwpTree();
+let sectorTree = new SectorTree();
 
 /* This is fully asynchronous */
 
@@ -36,15 +36,7 @@ class Map {
 
     debug('Bootstraping Map');
 
-    try {
-      cwpTree = new CwpTree();
-      sectorTree = new SectorTree();
-    } catch(ex) {
-      return Promise.reject(ex);
-    }
-
     return self._getFromDb();
-
   }
 
   _getFromDb() {
@@ -65,11 +57,10 @@ class Map {
   }
 
   _createEmptyMap() {
-    let self = this;
     debug('Creating a valid map');
 
     // Let's find a CWP to bind every sector
-    let cwp = _.find(cwpTree.getByType('cwp'));
+    let cwp = _.first(cwpTree.getByType('cwp'));
     if(!cwp || !cwp.id) {
       return Promise.reject(new Error('Could not find a single CWP to bind sectors'));
     }
@@ -85,10 +76,10 @@ class Map {
     let sectorsToBind = sectors.map((s) => s.name);
 
     let sector = sectorTree.getFromElementary(sectorsToBind);
-    console.log(sector);
 
-    let sectorName = sectorTree.getFromElementary(sectorsToBind).name || '';
+    let sectorName = sector.name || '';
 
+    // Create our single mapping item
     let mappingItem = {
       cwpId: cwp.id,
       sectors: _.clone(sectorsToBind.slice()),
@@ -97,18 +88,72 @@ class Map {
 
     debug(`CWP #${cwp.id} is now ${sectorName}`);
 
-    self.map = [mappingItem];
+    let map = [mappingItem];
 
-    return self.store().then(() => self);
-  }
+    try {
+      Map.validate(map);
+    } catch(err) {
+      console.log(err);
+      return Promise.reject(err);
+    }
+    this.map = [mappingItem];
 
-  static isValid(map) {
-    return true;
+    return this.store().then(() => this);
   }
 
   store() {
     return db.put('map', this.map);
   }
+  // Validates a map
+  static validate(map) {
+    // Input sanitation
+    if(!_.isArray(map)) {
+      throw new Error('Invalid argument');
+    }
+
+    // Validate format of each element in the array
+    map.forEach((m) => {
+      if(!_.isNumber(m.cwpId) || !_.isArray(m.sectors)) {
+        throw new Error('Invalid argument : wrong format');
+      }
+    });
+
+    // Check if every CWP exists, is the right type and is not disabled
+    map.forEach((m) => {
+      let cwp = cwpTree.getById(m.cwpId);
+
+      if(!cwp) {
+        throw new Error(`Trying to assign sectors to an unknown CWP (#${m.cwpId})`);
+      }
+      if(cwp.disabled === true) {
+        throw new Error(`Trying to assign sectors to a disabled CWP (#${m.cwpId})`);
+      }
+      if(cwp.isCwp() !== true) {
+        throw new Error(`Trying to assign sectors to a CWP with the wrong type (#${m.cwpId} / ${cwp.type})`);
+      }
+    });
+
+    let boundSectors = _.flatten(map.map((m) => m.sectors)).map((s) => s.toUpperCase());
+    // Check for duplicate sectors
+    if(_.uniq(boundSectors).length !== boundSectors.length) {
+      throw new Error(`Trying to bind sectors multiple times`);
+    }
+    // Check if every sector exists
+    let elementarySectors = sectorTree.getElementary().map((s) => s.name.toUpperCase());
+
+    if(_.difference(boundSectors, elementarySectors).length !== 0) {
+      throw new Error('Trying to bind unknown sectors');
+    }
+
+    if(_.difference(elementarySectors, boundSectors).length !== 0) {
+      throw new Error('We have missing elementary sectors !');
+    }
+
+    // Check if every sector is bound
+    return true;
+  }
+
+
 }
 
 export function getInstance() {
@@ -117,5 +162,5 @@ export function getInstance() {
 
 export default {
   getInstance: getInstance,
-  isValid: Map.isValid
+  validate: Map.validate
 };

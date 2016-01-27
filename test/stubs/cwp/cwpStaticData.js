@@ -17,6 +17,7 @@ const data = [
     "id": 3,
     "ipAddr": [],
     "disabled": false,
+    "type": "cwp",
     "suggestions": {
       "filteredSectors": ["KD"],
       "preferenceOrder": ["2F"]
@@ -26,6 +27,7 @@ const data = [
     "id": 4,
     "ipAddr": [],
     "disabled": false,
+    "type": "cwp",
     "suggestions": {
       "filteredSectors": ["UF"],
       "preferenceOrder": ["KD"]
@@ -35,6 +37,17 @@ const data = [
     "id": 5,
     "ipAddr": [],
     "disabled": false,
+    "type": "cwp",
+    "suggestions": {
+      "filteredSectors": [],
+      "preferenceOrder": ["KD", "2F"]
+    }
+  },
+  {
+    "id": 6,
+    "ipAddr": [],
+    "disabled": true,
+    "type": "cwp",
     "suggestions": {
       "filteredSectors": [],
       "preferenceOrder": ["KD", "2F"]

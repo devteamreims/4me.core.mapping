@@ -6,7 +6,7 @@ export default class Cwp {
   }
 
   isCwp() {
-    return true;
+    return this.type === 'cwp';
   }
 
   isSupervisor() {
