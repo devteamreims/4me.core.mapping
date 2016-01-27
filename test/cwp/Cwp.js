@@ -35,17 +35,23 @@ describe('Cwp', function() {
     });
 
     it('should reject invalid arguments', () => {
-      expect(() => new Cwp()).to.throw(/Invalid argument/);
-      expect(() => new Cwp({})).to.throw(/Invalid argument/);
+      expect(() => new Cwp()).to.throw(/Invalid argument/i);
+      expect(() => new Cwp({})).to.throw(/Invalid argument/i);
     });
 
     it('should reject without an id', () => {
       let args = _.cloneDeep(validCwpArguments);
       args.id = undefined;
-      expect(() => new Cwp(args)).to.throw(/without an id/);
+      expect(() => new Cwp(args)).to.throw(/without an id/i);
 
       args.id = 0;
-      expect(() => new Cwp(args)).to.throw(/without an id/);
+      expect(() => new Cwp(args)).to.throw(/without an id/i);
+    });
+
+    it('should reject invalid types', () => {
+      let args = _.cloneDeep(validCwpArguments);
+      args.type = 'foo';
+      expect(() => new Cwp(args)).to.throw(/invalid type/i);
     });
 
     it('should have proper fallbacks', () => {

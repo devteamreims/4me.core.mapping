@@ -3,6 +3,8 @@ import _ from 'lodash';
 
 const debug = d('4me.cwp.Cwp');
 
+const validTypes = ['cwp', 'supervisor', 'flow-manager'];
+
 export default class Cwp {
 
   constructor(obj) {
@@ -28,6 +30,8 @@ export default class Cwp {
 
     if(!obj.type) {
       debug('Constructing CWP %d without type', parseInt(obj.id));
+    } else if(validTypes.indexOf(obj.type) === -1) {
+      throw new Error(`Invalid argument : Invalid type ${obj.type}, valid types are ${validTypes.join(', ')}`);
     }
 
     this.id = parseInt(obj.id);
