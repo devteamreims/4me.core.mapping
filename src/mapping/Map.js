@@ -145,11 +145,11 @@ class Map {
       throw new Error('Trying to bind unknown sectors');
     }
 
+    // Check if every sector is bound
     if(_.difference(elementarySectors, boundSectors).length !== 0) {
       throw new Error('We have missing elementary sectors !');
     }
 
-    // Check if every sector is bound
     return true;
   }
 
