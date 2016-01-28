@@ -11,5 +11,7 @@ export function getCwpRouter() {
   router.get('/', cwpController.getAll);
   router.get('/:cwpId([0-9]+)', cwpController.getById);
 
+  router.get('/getMine', cwpController.getMine);
+
   return router;
 };

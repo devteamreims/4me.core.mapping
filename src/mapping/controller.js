@@ -18,10 +18,24 @@ function getMap(req, res, next) {
       debug(err);
       next(err);
     });
-;
+}
+
+function setMap(req, res) {
+  res.send({});
+  return;
+}
+
+function getByCwpId(req, res, next) {
+  debug(req.params.cwpId);
+  res.send({
+    cwpId: req.params.cwpId,
+    sectors: ['UR', 'XR']
+  });
 }
 
 
 export default {
-  getMap: getMap
+  getMap: getMap,
+  getByCwpId: getByCwpId,
+  setMap: setMap
 };
