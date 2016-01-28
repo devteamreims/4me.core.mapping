@@ -11,7 +11,7 @@ const moduleStubs = {
   '../database': dbStub
 };
 
-describe('Map', function() {
+describe('Map', () => {
   it('should instantiate', () => {
     let Map = proxyquire(modulePath, moduleStubs);
 
