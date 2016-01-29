@@ -6,7 +6,7 @@
   "scripts": {
     "babel-node": "DEBUG=4me.* babel-node server.js",
     "start": "nodemon --exec npm run babel-node",
-    "test": "NODE_ENV=test ./node_modules/.bin/mocha --compilers js:babel-register --recursive"
+    "test": "NODE_ENV=test mocha --compilers js:babel-register --recursive"
   },
   "author": "Benjamin Beret <benjamin.beret@gmail.com>",
   "license": "ISC",
@@ -23,6 +23,7 @@
     "level": "^1.4.0",
     "level-promise": "^2.1.0",
     "morgan": "^1.6.1",
+    "nodemon": "^1.8.1",
     "socket.io": "^1.4.4",
     "socket.io-cookie-parser": "^1.0.0"
   },
