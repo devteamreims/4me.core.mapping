@@ -125,6 +125,12 @@ class Map {
       if(!cwp) {
         throw new Error(`Trying to assign sectors to an unknown CWP (#${m.cwpId})`);
       }
+
+      // No sector assigned to this CWP
+      if(_.isEmpty(m.sectors)) {
+        return;
+      }
+
       if(cwp.disabled === true) {
         throw new Error(`Trying to assign sectors to a disabled CWP (#${m.cwpId})`);
       }
