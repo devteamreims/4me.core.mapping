@@ -4,10 +4,17 @@ import * as CwpTreeStub from '../stubs/cwp/Tree';
 import * as SectorTreeStub from '../stubs/sector/Tree';
 import * as dbStub from '../stubs/database';
 
+let mapValidatorStub = {
+  default: {
+    validate: sinon.stub().returns(true)
+  }
+};
+
 const modulePath = APPDIR + 'mapping/Map';
 const moduleStubs = {
   '../cwp/Tree': CwpTreeStub,
   '../sector/Tree': SectorTreeStub,
+  './validator': mapValidatorStub,
   '../database': dbStub
 };
 
@@ -205,104 +212,28 @@ describe('Map', () => {
       });
     });
 
+    describe('get', () => {
+      it('should have a set method', () => {
+        map.get.should.be.a('function');
+      });
 
+      it('should return the full map', () => {
+        map.get().should.eql(map.map);
+      });
 
-  });
-
-  describe('static methods', () => {
-    let Map;
-    beforeEach(() => {
-      Map = proxyquire(modulePath, moduleStubs).default;
     });
 
+    describe('set', () => {
 
-
-    describe('validate', () => {
-      it('should have a validate method', () => {
-        Map.validate.should.be.a('function');
+      it('should have a set method', () => {
+        map.set.should.be.a('function');
       });
 
-      it('should refuse invalid input', () => {
-        expect(() => Map.validate('string')).to.throws(/invalid argument/i);
-        expect(() => Map.validate(null)).to.throws(/invalid argument/i);
+      it('should validate', () => {
+        map.set({});
+        mapValidatorStub.default.validate.should.have.been.called;
       });
 
-      it('should refuse invalid format', () => {
-        let invalid = [
-          {
-            cwpId: 2,
-            foo: 'bar'
-          }, {
-            foo: 'bar'
-          }
-        ];
-        expect(() => Map.validate(invalid)).to.throws(/format/i);
-      });
-
-      it('should refuse unknown CWPs', () => {
-        let invalid = [
-          {
-            cwpId: 65,
-            sectors: ['UF', 'KF', 'KD']
-          }
-        ];
-        expect(() => Map.validate(invalid)).to.throws(/unknown cwp/i);
-      });
-
-      it('should refuse CWPs with the wrong type', () => {
-        // See test/stubs/cwpStaticData.js
-        let invalid = [
-          {
-            cwpId: 1,
-            sectors: ['UF', 'KF', 'KD']
-          }
-        ];
-        expect(() => Map.validate(invalid)).to.throws(/wrong type/i);
-      });
-
-      it('should refuse disabled CWPs', () => {
-        // See test/stubs/cwpStaticData.js
-        let invalid = [
-          {
-            cwpId: 6,
-            sectors: ['UF', 'KF', 'KD']
-          }
-        ];
-        expect(() => Map.validate(invalid)).to.throws(/disabled/i);
-      });
-
-      it('should refuse unknown sectors', () => {
-        let invalid = [
-          {
-            cwpId: 4,
-            sectors: ['UF', 'KF', 'KD', '4M']
-          }
-        ];
-        expect(() => Map.validate(invalid)).to.throws(/unknown sector/i);
-      });
-
-      it('should refuse sectors bound twice', () => {
-        let invalid = [
-          {
-            cwpId: 4,
-            sectors: ['UF', 'KF', 'KD']
-          }, {
-            cwpId: 3,
-            sectors: ['UF']
-          }
-        ];
-        expect(() => Map.validate(invalid)).to.throws(/multiple times/i);
-      });
-
-      it('should reject if a sector is missing', () => {
-        let invalid = [
-          {
-            cwpId: 4,
-            sectors: ['UF', 'KF']
-          }
-        ];
-        expect(() => Map.validate(invalid)).to.throws(/missing/i);
-      });
     });
   });
 });
