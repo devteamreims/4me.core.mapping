@@ -4,9 +4,17 @@
  */
 
 import d from 'debug';
-import Map from './Map';
+const debug = d('4me.mapping.controller');
 
-let debug = d('4me.mapping.controller');
+import Map from './Map';
+import suggestor from './suggestor';
+import CwpTree from '../cwp/Tree';
+import SectorTree from '../sector/Tree';
+
+let cwpTree = new CwpTree();
+let sectorTree = new SectorTree();
+
+
 
 function getMap(req, res, next) {
 
@@ -24,9 +32,7 @@ function setMap(req, res, next) {
   return Map.getInstance()
     .then((map) => {
       try {
-        Map.validate(req.body);
-        map.map = req.body; // TODO : Refactor
-        return map.store().then(() => res.send(map.map));
+        return map.set(req.body).then(() => res.send(map.map));
       } catch(err) {
         throw err;
       }
@@ -57,9 +63,25 @@ function getByCwpId(req, res, next) {
     });
 }
 
+function getSuggestions(req, res, next) {
+  return Map.getInstance()
+    .then((map) => {
+      try {
+        res.send(suggestor(req.params.cwpId, cwpTree, sectorTree, map));
+      } catch(err) {
+        throw err;
+      }
+    })
+    .catch((err) => {
+      debug(err);
+      next(err);
+    });
+}
+
 
 export default {
   getMap: getMap,
   getByCwpId: getByCwpId,
-  setMap: setMap
+  setMap: setMap,
+  getSuggestions: getSuggestions
 };

@@ -8,7 +8,7 @@
 import _ from 'lodash';
 
 
-export function reqToCwp(req, cwpTree) {
+export function reqToCwpId(req, cwpTree) {
   if(req === undefined || req.ip === undefined || cwpTree.getAll === undefined) {
     throw new Error('Invalid argument');
   }
@@ -23,5 +23,5 @@ export function reqToCwp(req, cwpTree) {
 };
 
 export default {
-  reqToCwp: reqToCwp
+  reqToCwpId: reqToCwpId
 };

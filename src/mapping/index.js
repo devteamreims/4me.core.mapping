@@ -13,5 +13,7 @@ export function getMappingRouter() {
 
   router.get('/cwp/:cwpId([0-9]+)', mappingController.getByCwpId);
 
+  router.get('/cwp/:cwpId([0-9]+)/suggest', mappingController.getSuggestions);
+
   return router;
 };

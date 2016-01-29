@@ -6,6 +6,7 @@
 import d from 'debug';
 import CwpTree from './Tree';
 import {validTypes} from './Cwp';
+import {reqToCwpId} from './identifier';
 
 let cwpTree = new CwpTree();
 
@@ -24,9 +25,12 @@ function getById(req, res) {
   res.send(cwpTree.getById(req.params.cwpId));
 }
 
-function getMine(req, res) {
-  // Identification logic here
-  res.send(cwpTree.getById(22));
+function getMine(req, res, next) {
+  let cwpId = reqToCwpId(req, cwpTree);
+  if(cwpId === -1) {
+    throw new Error('Request from unknown client');
+  }
+  res.send(cwpTree.getById(cwpId));
 }
 
 function getByType(req, res) {
