@@ -10,7 +10,7 @@ export default class SectorTree {
   }
 
   getFromElementary(sectors = []) {
-    return this.tree.find((s) => _.eq(s.elementarySectors.sort(), sectors.sort()));
+    return this.tree.find((s) => _.isEqual(s.elementarySectors.sort(), sectors.sort()));
   }
 
   getSector(sectorName = '') {

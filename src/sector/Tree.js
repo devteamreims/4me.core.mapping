@@ -61,7 +61,7 @@ export default class SectorTree {
   }
 
   getFromElementary(elementarySectors = []) {
-    return this.tree.find((s) => _.eq(s.elementarySectors.sort(), elementarySectors.sort()));
+    return this.tree.find((s) => _.isEqual(s.elementarySectors.sort(), elementarySectors.sort()));
   }
 
 }

@@ -17,8 +17,9 @@ export function notify(oldMap, newMap) {
     _.map(newMap, (m) => m.cwpId)
   );
 
+
   let changedCWpIds = _.filter(cwpIds, (cwpId) => {
-    return !_.eq(getSectors(cwpId, newMap), getSectors(cwpId, oldMap))
+    return !_.isEqual(getSectors(cwpId, newMap), getSectors(cwpId, oldMap))
   });
 
   mySocket.emitToCwps(changedCWpIds, 'mapping:refresh');
