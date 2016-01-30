@@ -19,7 +19,6 @@ global._ = _;
 global.expect = chai.expect;
 global.Promise = Promise;
 global.proxyquire = require('proxyquire').noPreserveCache();
-global.socketStub = require('./socket.stub');
 global.sinon = sinon;
 
 var e = {};
