@@ -81,8 +81,7 @@ class Map {
     // Create our single mapping item
     let mappingItem = {
       cwpId: cwp.id,
-      sectors: _.clone(sectorsToBind.slice()),
-      sectorName: sectorName
+      sectors: _.clone(sectorsToBind)
     };
 
     debug(`CWP #${cwp.id} is now ${sectorName}`);

@@ -16,13 +16,15 @@ export function notify(oldMap, newMap) {
     _.map(oldMap, (m) => m.cwpId),
     _.map(newMap, (m) => m.cwpId)
   );
+  
 
-
-  let changedCWpIds = _.filter(cwpIds, (cwpId) => {
+  let changedCwpIds = _.filter(cwpIds, (cwpId) => {
     return !_.isEqual(getSectors(cwpId, newMap), getSectors(cwpId, oldMap))
   });
 
-  mySocket.emitToCwps(changedCWpIds, 'mapping:refresh');
+  debug(changedCwpIds);
+
+  mySocket.emitToCwps(changedCwpIds, 'mapping:refresh');
 }
 
 const getSectors = (cwpId, map) => {
