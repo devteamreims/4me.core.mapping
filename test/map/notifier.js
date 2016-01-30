@@ -79,6 +79,25 @@ describe('mapNotifier', () => {
         notifier.notify(validOldMap, newMap);
         mySocketStub.default.emitToCwps.lastCall.args[0].sort().should.deep.eql(expected);
       });
+
+      it('should notify cwps when moving a group of sectors', () => {
+        const expected = [2, 4].sort();
+        let oldMap = [
+          {cwpId: 2, sectors: ['UR', 'XR']},
+          {cwpId: 3, sectors: ['KR']},
+          {cwpId: 4, sectors: []}
+        ];
+
+        let newMap = [
+          {cwpId: 2, sectors: []},
+          {cwpId: 3, sectors: ['KR']},
+          {cwpId: 4, sectors: ['UR', 'XR']}
+        ];
+
+        notifier.notify(oldMap, newMap);
+        mySocketStub.default.emitToCwps.lastCall.args[0].sort().should.deep.eql(expected);
+
+      });
     });
   });
 });
