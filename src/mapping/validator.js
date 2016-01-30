@@ -39,6 +39,12 @@ export function validate(map, cwpTree, sectorTree) {
     }
   });
 
+  // Check for CWPs mentionned twice or more
+  let cwpIds = _.map(map, (m) => m.cwpId);
+  if(!_.eq(cwpIds, _.uniq(cwpIds))) {
+    throw new Error(`Trying to bind sectors to a CWP multiple times`);
+  }
+
   let boundSectors = _.flatten(map.map((m) => m.sectors)).map((s) => s.toUpperCase());
   // Check for duplicate sectors
   if(_.uniq(boundSectors).length !== boundSectors.length) {

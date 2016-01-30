@@ -84,6 +84,19 @@ describe('mapValidator', () => {
         expect(() => validator.validate(invalid, cwpTree, sectorTree)).to.throws(/unknown sector/i);
       });
 
+      it('should refuse cwps mentionned twice', () => {
+        let invalid = [
+          {
+            cwpId: 4,
+            sectors: ['KF', 'KD']
+          }, {
+            cwpId: 4,
+            sectors: ['UF']
+          }
+        ];
+        expect(() => validator.validate(invalid, cwpTree, sectorTree)).to.throws(/multiple times/i);
+      });
+
       it('should refuse sectors bound twice', () => {
         let invalid = [
           {
