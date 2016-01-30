@@ -11,8 +11,6 @@ export function notify(oldMap, newMap) {
   let changedNew = [];
   let changedOld = [];
 
-
-
   // For now, just notify everyone
   if(_.isArray(oldMap)) {
     changedOld = oldMap.map((m) => m.cwpId);

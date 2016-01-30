@@ -40,6 +40,7 @@ describe('mapNotifier', () => {
       it('should call mySocket.emitToCwps', () => {
         notifier.notify(validOldMap, validNewMap);
         mySocketStub.default.emitToCwps.should.have.been.called;
+        mySocketStub.default.emitToCwps.args[0][1].should.eql('mapping:refresh');
       });
     });
   });
