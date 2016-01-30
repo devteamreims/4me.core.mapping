@@ -130,9 +130,10 @@
   {
     "name":"XKHYR",
     "elementarySectors":[
-      "UR",
       "XR",
-      "KR"
+      "KR",
+      "YR",
+      "HR"
     ],
     "canAccept":[
       "UR"
