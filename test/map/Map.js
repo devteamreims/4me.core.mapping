@@ -234,6 +234,12 @@ describe('Map', () => {
         mapValidatorStub.default.validate.should.have.been.called;
       });
 
+      it('should fail if validation fails', () => {
+        let stubs = _.clone(moduleStubs);
+        stubs['./validator'].default.validate = sinon.stub().throws(new Error('failed validation'));
+
+        expect(() => map.set({})).to.throw();
+      });
     });
   });
 });
