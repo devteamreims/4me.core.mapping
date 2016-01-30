@@ -3,6 +3,7 @@ import {APPDIR} from '../settings'
 import * as CwpTreeStub from '../stubs/cwp/Tree';
 import * as SectorTreeStub from '../stubs/sector/Tree';
 import * as dbStub from '../stubs/database';
+import * as mySocketStub from '../stubs/socket';
 
 let mapValidatorStub = {
   default: {
@@ -10,12 +11,20 @@ let mapValidatorStub = {
   }
 };
 
+let mapNotifierStub = {
+  default: {
+    notify: sinon.stub().returns(true)
+  }
+};
+
+
 const modulePath = APPDIR + 'mapping/Map';
 const moduleStubs = {
   '../cwp/Tree': CwpTreeStub,
   '../sector/Tree': SectorTreeStub,
   './validator': mapValidatorStub,
-  '../database': dbStub
+  '../database': dbStub,
+  './notifier': mapNotifierStub
 };
 
 describe('Map', () => {
@@ -202,9 +211,28 @@ describe('Map', () => {
 
   describe('instanciated', () => {
     let map;
+    let stubDbMap = [
+      {cwpId: 4, sectors: []}
+    ];
+
+    let newModuleStubs;
 
     beforeEach(() => {
-      let Map = proxyquire(modulePath, moduleStubs);
+
+      let r = {
+        get: sinon.stub().resolves(stubDbMap),
+        put: sinon.stub().resolves({})
+      };
+
+      let dbStub = () => r;
+
+      newModuleStubs = Object.assign(_.cloneDeep(moduleStubs), {
+        '../database': {
+          default: dbStub
+        }
+      });
+
+      let Map = proxyquire(modulePath, newModuleStubs);
 
       return Map.getInstance().then((m) => {
         map = m;
@@ -230,15 +258,25 @@ describe('Map', () => {
       });
 
       it('should validate', () => {
-        map.set({});
+        map.set([]);
         mapValidatorStub.default.validate.should.have.been.called;
       });
 
       it('should fail if validation fails', () => {
-        let stubs = _.clone(moduleStubs);
+        let stubs = _.cloneDeep(moduleStubs);
         stubs['./validator'].default.validate = sinon.stub().throws(new Error('failed validation'));
 
-        expect(() => map.set({})).to.throw();
+        let Map = proxyquire(modulePath, stubs);
+
+        return Map.getInstance().then((map) => {
+          expect(() => map.set({})).to.throw(/failed validation/i);
+        });
+        
+      });
+
+      it('should notify changed CWPs', () => {
+        map.set([]);
+        mapNotifierStub.default.notify.should.have.been.called;
       });
     });
   });

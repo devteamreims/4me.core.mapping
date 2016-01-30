@@ -7,6 +7,7 @@ import CwpTree from '../cwp/Tree';
 import SectorTree from '../sector/Tree';
 import database from '../database';
 import mapValidator from './validator';
+import mapNotifier from './notifier';
 
 let instance = null;
 let db = database();
@@ -32,11 +33,9 @@ class Map {
   }
 
   _bootstrap() {
-    var self = this;
-
     debug('Bootstraping Map');
-
-    return self._getFromDb();
+    this.map = [];
+    return this._getFromDb();
   }
 
   _getFromDb() {
@@ -93,7 +92,6 @@ class Map {
     try {
       validate(map);
     } catch(err) {
-      console.log(err);
       return Promise.reject(err);
     }
     this.map = [mappingItem];
@@ -110,20 +108,25 @@ class Map {
   }
 
   set(map = {}) {
-    try {
-      validate(map);
-    } catch(err) {
-      throw err;
-    }
+    
+    validate(map);
+    // Find changed CWPs to send an event;
+    let changedCwps = [];
+
+    mapNotifier.notify(this.map, map);
+
     this.map = map;
     return this.store();
   }
 
 }
 
+
+
 export function validate(map) {
   return mapValidator.validate(map, cwpTree, sectorTree);
 }
+
 export function getInstance() {
   return new Map();
 }

@@ -12,6 +12,12 @@ function getSocket() {
   };
 }
 
+function init() {}
+
+function emitToCwps() {}
+
 export default {
-  getSocket: getSocket
+  getSocket: getSocket,
+  init: init,
+  emitToCwps: emitToCwps
 };
