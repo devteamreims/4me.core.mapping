@@ -48,13 +48,23 @@ function _suggestOnEmptyCwp(cwp, cwpTree, sectorTree, map) {
       return true;
     }
 
+
     // Find sector group
-    let sector = sectorTree.getFromElementary(m.sectors || []);
-    if(!sector || _.isEmpty(sector) || _.isEmpty(sector.canGive)) {
+    let sector = sectorTree.getFromElementary(m.sectors);
+    if(!sector || _.isEmpty(sector)) {
+      // Unknown sector bound, move on
+      return true;
+    }
+
+    // Add bound sector to rawSuggestions, useful for moving sector groups
+    rawSuggestions.push(sector.name);
+
+    if(_.isEmpty(sector.canGive)) {
       // Nothing to give, move on
       return true;
     }
 
+    // Add canGive
     rawSuggestions = rawSuggestions.concat(sector.canGive);
 
   });
@@ -87,8 +97,13 @@ function _suggestOnEmptyCwp(cwp, cwpTree, sectorTree, map) {
   // Now that we have filtered suggestions, we need to sort them
   // First, sort by alphabetical order
   let sorted = filtered.sort();
+
+
+  // Expand preferenceOrder
+  let expandedPreferenceOrder = _.map(cwp.suggestions.preferenceOrder, (p) => sectorTree.getSector(p));
+
   // Sort using preferenceOrder
-  sorted = _.sortBy(filtered, (suggestion) => _rateSuggestion(cwp.suggestions.preferenceOrder, suggestion.elementarySectors));
+  sorted = _.sortBy(filtered, (suggestion) => _rateSuggestion(expandedPreferenceOrder, suggestion.elementarySectors)).reverse();
 
   return sorted.map((r) => {
     return {
@@ -111,7 +126,7 @@ function _rateSuggestion(preferenceOrder, suggestionSectors) {
     // If our suggestion is included in current item of preferenceOrder,
     // we break the loop and stop decreasing score
     let commonSectors = _.intersection(pref.elementarySectors, suggestionSectors);
-    if(_.isEqual(commonSectors, suggestionSectors)) {
+    if(_.isEqual(commonSectors.sort(), suggestionSectors.sort())) {
       // Here, we just confirmed our proposed suggestion is included in preferenceOrder
       return false;
     }

@@ -40,7 +40,7 @@ const data = [
     "type": "cwp",
     "suggestions": {
       "filteredSectors": [],
-      "preferenceOrder": ["KD", "2F"]
+      "preferenceOrder": ["KD", "UF", "2F"]
     }
   },
   {
@@ -50,7 +50,7 @@ const data = [
     "type": "cwp",
     "suggestions": {
       "filteredSectors": [],
-      "preferenceOrder": ["KD", "2F"]
+      "preferenceOrder": ["2F", "KD"]
     }
   },
 ];
