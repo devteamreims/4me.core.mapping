@@ -11,18 +11,21 @@ export function notify(oldMap, newMap) {
   let changedNew = [];
   let changedOld = [];
 
-  // For now, just notify everyone
-  if(_.isArray(oldMap)) {
-    changedOld = oldMap.map((m) => m.cwpId);
-  }
+  // List all affected CWPs
+  let cwpIds = _.union(
+    _.map(oldMap, (m) => m.cwpId),
+    _.map(newMap, (m) => m.cwpId)
+  );
 
-  if(_.isArray(newMap)) {
-    changedNew = newMap.map((m) => m.cwpId);
-  }
+  let changedCWpIds = _.filter(cwpIds, (cwpId) => {
+    return !_.eq(getSectors(cwpId, newMap), getSectors(cwpId, oldMap))
+  });
 
-  let changed = _.uniq(changedNew.concat(changedOld));
-  console.log('Notifying CWPs with IDs ' + changed.join(','));
-  mySocket.emitToCwps(changed, 'mapping:refresh');
+  mySocket.emitToCwps(changedCWpIds, 'mapping:refresh');
+}
+
+const getSectors = (cwpId, map) => {
+  return _.get(_.find(map, (m) => cwpId === m.cwpId), 'sectors', []).sort();
 }
 
 export default {
