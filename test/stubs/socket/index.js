@@ -19,5 +19,5 @@ function emitToCwps() {}
 export default {
   getSocket: getSocket,
   init: init,
-  emitToCwps: emitToCwps
+  emitToCwps: sinon.stub().returns(true)
 };

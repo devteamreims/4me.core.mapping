@@ -6,7 +6,7 @@ import mySocket from '../socket';
 
 export function notify(oldMap, newMap) {
   if(!oldMap && !newMap) {
-    throw new Error('Argument error');
+    throw new Error('Invalid argument');
   }
   let changedNew = [];
   let changedOld = [];
