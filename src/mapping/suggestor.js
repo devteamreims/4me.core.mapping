@@ -145,9 +145,5 @@ function _suggestOnBoundCwp(sectorCwpBond, sectorTree) {
   }
   // canAccept : ['2F', 'KF']
   // Output [{sectors: [2F's elementarySectors]}, {sectors: [KF's elementarySectors]}]
-  return grouping.canAccept.map((sectorName) => {
-    return {
-      sectors: sectorTree.getSector(sectorName).elementarySectors
-    };
-  });
+  return grouping.canAccept.map((sectorName) => ({sectors: sectorTree.getSector(sectorName).elementarySectors}));
 }
