@@ -9,7 +9,7 @@ let debug = d('4me.index');
  * Get port from environment and store in Express.
  */
 
-let port = normalizePort(process.env.PORT || '3000');
+let port = normalizePort(process.env.PORT || '3100');
 app.set('port', port);
 
 /**
