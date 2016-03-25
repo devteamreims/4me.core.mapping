@@ -3,6 +3,10 @@ import d from 'debug';
 const debug = d('4me.socket');
 import _ from 'lodash';
 
+import {
+  reqToCwpId,
+} from '../cwp/identifier';
+
 
 let mySocketIo;
 
@@ -14,8 +18,9 @@ function init(ioSocket) {
   }
   if(mySocketIo !== undefined) {
     mySocketIo.on('connect', function(socket) {
-      if(socket.request.cookies['my-cwp-id']) {
-        let cwpId = parseInt(socket.request.cookies['my-cwp-id']);
+      let cwpId = _.get(socket, 'handshake.query.cwp-id') || _.get(socket, 'request.cookies.my-cwp-id');
+      if(cwpId !== undefined) {
+        cwpId = parseInt(cwpId);
         debug(`Socket with id ${socket.id} now bound to CWP ${cwpId}`);
         // Decorate socket object with cwpId
         socket.cwpId = cwpId;
