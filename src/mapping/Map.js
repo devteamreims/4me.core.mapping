@@ -81,7 +81,7 @@ class Map {
     // Create our single mapping item
     let mappingItem = {
       cwpId: cwp.id,
-      sectors: _.clone(sectorsToBind)
+      sectors: _.clone(sectorsToBind),
     };
 
     debug(`CWP #${cwp.id} is now ${sectorName}`);
@@ -107,7 +107,7 @@ class Map {
   }
 
   set(map = {}) {
-    
+
     validate(map);
     // Find changed CWPs to send an event;
     let changedCwps = [];

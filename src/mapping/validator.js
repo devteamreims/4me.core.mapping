@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import d from 'debug';
-import Promise from 'bluebird';
+
 const debug = d('4me.mapping.validator');
 
 
@@ -13,7 +13,8 @@ export function validate(map, cwpTree, sectorTree) {
 
   // Validate format of each element in the array
   map.forEach((m) => {
-    if(!_.isNumber(m.cwpId) || !_.isArray(m.sectors)) {
+    const isValid = _.isNumber(m.cwpId) && (_.isArray(m.sectors) || !!m.disabled);
+    if(!isValid) {
       throw new Error('Invalid argument : wrong format');
     }
   });
@@ -31,7 +32,7 @@ export function validate(map, cwpTree, sectorTree) {
       return;
     }
 
-    if(cwp.disabled === true) {
+    if(m.disabled === true) {
       throw new Error(`Trying to assign sectors to a disabled CWP (#${m.cwpId})`);
     }
     if(cwp.isCwp() !== true) {

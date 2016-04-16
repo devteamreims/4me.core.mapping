@@ -16,7 +16,7 @@ export function notify(oldMap, newMap) {
     _.map(oldMap, (m) => m.cwpId),
     _.map(newMap, (m) => m.cwpId)
   );
-  
+
 
   let changedCwpIds = _.filter(cwpIds, (cwpId) => {
     return !_.isEqual(getSectors(cwpId, newMap), getSectors(cwpId, oldMap))
@@ -25,6 +25,7 @@ export function notify(oldMap, newMap) {
   debug(changedCwpIds);
 
   mySocket.emitToCwps(changedCwpIds, 'mapping:refresh');
+  mySocket.emitToCwps('*', 'map_updated', newMap);
 }
 
 const getSectors = (cwpId, map) => {
