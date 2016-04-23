@@ -112,12 +112,12 @@
       "SE"
     ],
     "canAccept":[
-      "FIR",
-      "5E",
-      "5H"
+      "KD2F"
     ],
     "canGive":[
-      "KD2F"
+      "FIR",
+      "4E",
+      "4H"
     ]
   },
   {
