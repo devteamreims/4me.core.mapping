@@ -6,7 +6,7 @@
       "filteredSectors": ["URMN"],
       "preferenceOrder": ["KD", "2F"]
     },
-    "backupedRadios": ["KD", "UF"]
+    "backupedRadios": ["KD", "KF"]
   },
   {
     "id": 21,
@@ -22,7 +22,8 @@
     "suggestions": {
       "filteredSectors": ["URMN"],
       "preferenceOrder": ["4H", "5EH"]
-    }
+    },
+    "backupedRadios": ["UH", "XH"]
   },
   {
     "id": 23,
