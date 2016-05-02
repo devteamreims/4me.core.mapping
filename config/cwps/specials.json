@@ -3,14 +3,12 @@
     "id": 1,
     "ipAddr": [],
     "name": "CDS",
-    "disabled": false,
     "type": "supervisor"
   },
   {
     "id": 2,
     "ipAddr": [],
     "name": "FMP",
-    "disabled": false,
     "type": "flow-manager"
   }
 ]

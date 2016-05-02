@@ -2,7 +2,6 @@
   {
     "id": 30,
     "ipAddr": [],
-    "disabled": false,
     "suggestions": {
       "filteredSectors": ["KD2F", "4E", "4H"],
       "preferenceOrder": ["5R"]
@@ -23,7 +22,6 @@
       "::1",
       "127.0.0.1"
     ],
-    "disabled": false,
     "suggestions": {
       "filteredSectors": ["KDFE"],
       "preferenceOrder": ["5R"]
@@ -32,7 +30,6 @@
   {
     "id": 33,
     "ipAddr": [],
-    "disabled": false,
     "suggestions": {
       "filteredSectors": ["KDFE"],
       "preferenceOrder": ["5R"]
@@ -41,7 +38,6 @@
   {
     "id": 34,
     "ipAddr": [],
-    "disabled": false,
     "suggestions": {
       "filteredSectors": ["KDFE"],
       "preferenceOrder": ["4N"]
@@ -50,7 +46,6 @@
   {
     "id": 35,
     "ipAddr": [],
-    "disabled": false,
     "suggestions": {
       "filteredSectors": ["KDFE"],
       "preferenceOrder": ["4N"]
@@ -59,7 +54,6 @@
   {
     "id": 36,
     "ipAddr": [],
-    "disabled": false,
     "suggestions": {
       "filteredSectors": ["KDFE"],
       "preferenceOrder": ["4N"]
@@ -68,7 +62,6 @@
   {
     "id": 37,
     "ipAddr": [],
-    "disabled": false,
     "suggestions": {
       "filteredSectors": ["KDFE"],
       "preferenceOrder": ["4N"]

@@ -2,7 +2,6 @@
   {
     "id": 11,
     "ipAddr": [],
-    "disabled": false,
     "suggestions": {
       "filteredSectors": [],
       "preferenceOrder": ["RMS", "KDFE", "FIR"]
@@ -11,7 +10,6 @@
   {
     "id": 12,
     "ipAddr": [],
-    "disabled": false,
     "suggestions": {
       "filteredSectors": ["4E", "4H", "KD2F"],
       "preferenceOrder": ["SE", "URMN"]
@@ -20,7 +18,6 @@
   {
     "id": 13,
     "ipAddr": [],
-    "disabled": false,
     "suggestions": {
       "filteredSectors": [],
       "preferenceOrder": []
@@ -29,7 +26,6 @@
   {
     "id": 14,
     "ipAddr": [],
-    "disabled": false,
     "suggestions": {
       "filteredSectors": ["URMN", "4E", "4H", "FIR"],
       "preferenceOrder": []
@@ -38,7 +34,6 @@
   {
     "id": 15,
     "ipAddr": [],
-    "disabled": true,
     "suggestions": {
       "filteredSectors": [],
       "preferenceOrder": []
@@ -47,7 +42,6 @@
   {
     "id": 16,
     "ipAddr": [],
-    "disabled": true,
     "suggestions": {
       "filteredSectors": [],
       "preferenceOrder": []
