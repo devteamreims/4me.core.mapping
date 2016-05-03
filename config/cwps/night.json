@@ -5,7 +5,8 @@
     "suggestions": {
       "filteredSectors": [],
       "preferenceOrder": ["RMS", "KDFE", "FIR"]
-    }
+    },
+    "backupedRadios": ["E", "SE", "KD", "HH", "HR"]
   },
   {
     "id": 12,
@@ -13,7 +14,8 @@
     "suggestions": {
       "filteredSectors": ["4E", "4H", "KD2F"],
       "preferenceOrder": ["SE", "URMN"]
-    }
+    },
+    "backupedRadios": ["E", "SE"]
   },
   {
     "id": 13,
@@ -21,7 +23,8 @@
     "suggestions": {
       "filteredSectors": [],
       "preferenceOrder": []
-    }
+    },
+    "backupedRadios": ["E", "SE", "KE", "UH", "HH", "UN", "KR"]
   },
   {
     "id": 14,
@@ -29,7 +32,8 @@
     "suggestions": {
       "filteredSectors": ["URMN", "4E", "4H", "FIR"],
       "preferenceOrder": []
-    }
+    },
+    "backupedRadios": ["XE", "KF", "KD"]
   },
   {
     "id": 15,
