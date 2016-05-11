@@ -68,7 +68,7 @@ function emitToCwps(targetCwps, message, data) {
 
 }
 
-function getSocket() {
+export function getSocket() {
   return mySocketIo;
 }
 
