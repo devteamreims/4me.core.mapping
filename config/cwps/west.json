@@ -6,7 +6,7 @@
       "filteredSectors": ["KD2F", "4E", "4H"],
       "preferenceOrder": ["5R"]
     },
-    "backupedRadios": ["UR", "XR", "KR", "HR", "YR"]
+    "backupedRadios": ["UR", "XR", "KR", "HYR"]
   },
   {
     "id": 31,
@@ -28,7 +28,7 @@
       "filteredSectors": ["KDFE"],
       "preferenceOrder": ["5R"]
     },
-    "backupedRadios": ["KN", "HN", "UR", "XR", "KR", "YR", "HR"]
+    "backupedRadios": ["KN", "HN", "UR", "XR", "KR", "HYR"]
   },
   {
     "id": 33,
@@ -37,7 +37,7 @@
       "filteredSectors": ["KDFE"],
       "preferenceOrder": ["5R"]
     },
-    "backupedRadios": ["UR", "XR", "KR", "YR", "HR"]
+    "backupedRadios": ["UR", "XR", "KR", "YR", "HYR"]
   },
   {
     "id": 34,
@@ -46,7 +46,7 @@
       "filteredSectors": ["KDFE"],
       "preferenceOrder": ["4N"]
     },
-    "backupedRadios": ["KN", "HN", "YR", "HR"]
+    "backupedRadios": ["KN", "HN", "YR", "HYR"]
   },
   {
     "id": 35,

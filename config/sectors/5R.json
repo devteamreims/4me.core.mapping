@@ -28,36 +28,14 @@
     "canGive":[]
   },
   {
-    "name":"YR",
-    "elementarySectors":["YR"],
+    "name":"HYR",
+    "elementarySectors":["HYR"],
     "canAccept":[
-      "HR",
       "KR",
       "XKR",
       "UXKR"
     ],
     "canGive":[]
-  },
-  {
-    "name":"HR",
-    "elementarySectors":["HR"],
-    "canAccept":[
-      "YR"
-    ],
-    "canGive":[]
-  },
-  {
-    "name":"HYR",
-    "elementarySectors":[
-      "YR",
-      "HR"
-    ],
-    "canAccept":[
-      "KR",
-      "UXKR"
-    ],
-    "canGive":[
-    ]
   },
   {
     "name":"UXR",
@@ -112,8 +90,7 @@
     "name":"KHYR",
     "elementarySectors":[
       "KR",
-      "YR",
-      "HR"
+      "HYR"
     ],
     "canAccept":[
       "XR",
@@ -130,8 +107,7 @@
     "elementarySectors":[
       "XR",
       "KR",
-      "YR",
-      "HR"
+      "HYR"
     ],
     "canAccept":[
       "UR"
@@ -148,8 +124,7 @@
       "UR",
       "XR",
       "KR",
-      "YR",
-      "HR"
+      "HYR"
     ],
     "canAccept":[
       "4N"

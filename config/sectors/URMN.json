@@ -5,8 +5,7 @@
       "UR",
       "XR",
       "KR",
-      "YR",
-      "HR",
+      "HYR",
       "UB",
       "UN",
       "KN",
@@ -60,8 +59,7 @@
     "name":"HNR",
     "elementarySectors":[
       "HN",
-      "YR",
-      "HR"
+      "HYR"
     ],
     "canAccept":[
       "KNR",
@@ -78,8 +76,7 @@
       "HN",
       "KN",
       "KR",
-      "YR",
-      "HR"
+      "HYR"
     ],
     "canAccept":[
       "UXNR"
