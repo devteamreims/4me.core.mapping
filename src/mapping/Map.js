@@ -9,6 +9,8 @@ import database from '../database';
 import mapValidator from './validator';
 import mapNotifier from './notifier';
 
+import { logNewMap } from '../logger';
+
 let instance = null;
 let db = database();
 
@@ -115,6 +117,7 @@ class Map {
     mapNotifier.notify(this.map, map);
 
     this.map = map;
+    logNewMap(this.map, {commitMap: true});
     return this.store();
   }
 
