@@ -30,10 +30,11 @@ function getStatus(req, res, next) {
   const coreSockets = _(getSocket().of('/').connected)
     .map(s => {
       if(isCoreSocket(s)) {
+        const ipAddress = s.request.headers['x-forwarded-for'] || s.request.connection.remoteAddress;
         return {
           id: s.id,
           cwpId: s.cwpId,
-          ip: s.request.connection.remoteAddress,
+          ip: ipAddress,
         };
       }
       return false;
@@ -43,10 +44,11 @@ function getStatus(req, res, next) {
 
   const mappingSockets = _(getSocket().of('/').connected)
     .map(s => {
+      const ipAddress = s.request.headers['x-forwarded-for'] || s.request.connection.remoteAddress;
       if(!isCoreSocket(s)) {
         return {
           id: s.id,
-          ip: s.request.connection.remoteAddress,
+          ip: ipAddress,
         };
       }
       return false;
