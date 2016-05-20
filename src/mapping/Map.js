@@ -9,7 +9,10 @@ import database from '../database';
 import mapValidator from './validator';
 import mapNotifier from './notifier';
 
-import { logNewMap } from '../logger';
+import {
+  logNewMap,
+  logMapError,
+} from '../logger';
 
 let instance = null;
 let db = database();
@@ -110,7 +113,13 @@ class Map {
 
   set(map = {}) {
 
-    validate(map);
+    try {
+      validate(map);
+    } catch(err) {
+      logMapError(map, err);
+      throw err;
+    }
+
     // Find changed CWPs to send an event;
     let changedCwps = [];
 
