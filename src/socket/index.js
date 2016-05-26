@@ -35,7 +35,7 @@ function init(ioSocket) {
   return mySocketIo;
 }
 
-function emitToCwps(targetCwps, message, data) {
+export function emitToCwps(targetCwps, message, data) {
   if(!_.isArray(targetCwps) && targetCwps !== '*') {
     targetCwps = [parseInt(targetCwps)];
   }

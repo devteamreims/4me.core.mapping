@@ -5,6 +5,7 @@ import {getSectorRouter} from './sector';
 import {getCwpRouter} from './cwp';
 import {getMappingRouter} from './mapping';
 import {getStatusRouter} from './status';
+import {getReloadRouter} from './reload';
 
 let routes = function(socketIo) {
 
@@ -17,6 +18,7 @@ let routes = function(socketIo) {
   router.use('/sectors', getSectorRouter());
   router.use('/cwp', getCwpRouter());
   router.use('/mapping', getMappingRouter());
+  router.use('/reload', getReloadRouter());
 
   router.use('/status', getStatusRouter());
 
