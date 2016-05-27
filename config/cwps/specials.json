@@ -1,14 +1,17 @@
 [
   {
     "id": 1,
-    "ipAddr": [],
     "name": "CDS",
     "type": "supervisor"
   },
   {
     "id": 2,
-    "ipAddr": [],
     "name": "FMP",
     "type": "flow-manager"
+  },
+  {
+    "id": 3,
+    "name": "TECH-SPVR",
+    "type": "tech-supervisor"
   }
 ]

@@ -1,7 +1,6 @@
 [
   {
     "id": 11,
-    "ipAddr": [],
     "suggestions": {
       "filteredSectors": [],
       "preferenceOrder": ["RMS", "KDFE", "FIR"]
@@ -10,7 +9,6 @@
   },
   {
     "id": 12,
-    "ipAddr": [],
     "suggestions": {
       "filteredSectors": ["4E", "4H", "KD2F"],
       "preferenceOrder": ["SE", "URMN"]
@@ -19,7 +17,6 @@
   },
   {
     "id": 13,
-    "ipAddr": [],
     "suggestions": {
       "filteredSectors": [],
       "preferenceOrder": []
@@ -28,7 +25,6 @@
   },
   {
     "id": 14,
-    "ipAddr": [],
     "suggestions": {
       "filteredSectors": ["URMN", "4E", "4H", "FIR"],
       "preferenceOrder": []
@@ -37,7 +33,6 @@
   },
   {
     "id": 15,
-    "ipAddr": [],
     "suggestions": {
       "filteredSectors": [],
       "preferenceOrder": []
@@ -45,7 +40,6 @@
   },
   {
     "id": 16,
-    "ipAddr": [],
     "suggestions": {
       "filteredSectors": [],
       "preferenceOrder": []

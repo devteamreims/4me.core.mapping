@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 const debug = d('4me.cwp.Cwp');
 
-export const validTypes = ['cwp', 'supervisor', 'flow-manager'];
+export const validTypes = ['cwp', 'supervisor', 'flow-manager', 'tech-supervisor'];
 
 export default class Cwp {
 
@@ -16,9 +16,6 @@ export default class Cwp {
       throw new Error('Invalid argument : Could not build CWP without an id');
     }
 
-    if(!obj.ipAddr) {
-      debug('Constructing CWP %d without ip addresses', parseInt(obj.id));
-    }
 
     if(!obj.suggestions) {
       debug('Constructing CWP %d without suggestions', parseInt(obj.id));
@@ -34,7 +31,6 @@ export default class Cwp {
     this.name = obj.name || 'P' + this.id;
     this.disabled = !!obj.disabled;
     this.type = obj.type || 'cwp';
-    this.ipAddr = obj.ipAddr || [];
     this.suggestions = _.pick(
       Object.assign({filteredSectors: [], preferenceOrder: []}, _.cloneDeep(obj.suggestions)),
       ['filteredSectors', 'preferenceOrder']
