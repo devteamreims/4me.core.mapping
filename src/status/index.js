@@ -60,6 +60,7 @@ function getStatus(req, res, next) {
     //rawMap,
     coreSocketClients: coreSockets,
     mappingSocketClients: mappingSockets,
+    version: process.env.npm_package_version,
   });
 
 }
