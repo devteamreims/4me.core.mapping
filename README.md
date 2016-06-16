@@ -2,6 +2,8 @@
 
 This software is a webservice providing an API (REST and WebSockets) in charge of handling links between Controler Working Positions (CWP) and sectors.
 
+[![Dependencies](https://david-dm.org/devteamreims/4me.core.mapping.svg)](https://david-dm.org/devteamreims/4me.core.mapping)
+
 ## How to build and run
 ```
 # npm install
