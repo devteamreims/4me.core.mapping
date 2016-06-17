@@ -4,7 +4,7 @@
     "elementarySectors":["UR"],
     "canAccept":[
       "XR",
-      "XKHYR"
+      "XKHR"
     ],
     "canGive":[]
   },
@@ -13,7 +13,7 @@
     "elementarySectors":["XR"],
     "canAccept":[
       "UR",
-      "KHYR",
+      "KHR",
       "KR"
     ],
     "canGive":[]
@@ -45,7 +45,7 @@
     ],
     "canAccept":[
       "UBN",
-      "KHYR",
+      "KHR",
       "KR"
     ],
     "canGive":[
@@ -87,7 +87,7 @@
     ]
   },
   {
-    "name":"KHYR",
+    "name":"KHR",
     "elementarySectors":[
       "KR",
       "HYR"
@@ -103,7 +103,7 @@
     ]
   },
   {
-    "name":"XKHYR",
+    "name":"XKHR",
     "elementarySectors":[
       "XR",
       "KR",
@@ -115,7 +115,7 @@
     "canGive":[
       "XR",
       "HYR",
-      "KHYR"
+      "KHR"
     ]
   },
   {
@@ -134,8 +134,8 @@
       "UXR",
       "UXKR",
       "HYR",
-      "KHYR",
-      "XKHYR"
+      "KHR",
+      "XKHR"
     ]
   }
 ]
