@@ -1,4 +1,4 @@
-# Current
+# Version 0.1.1
  * Add version in /status [#91](https://github.com/devteamreims/4ME/issues/91)
  * Add david-dm badge to README
  * Rename KHYR and XKHYR to KHR and XKHR [#95](https://github.com/devteamreims/4ME/issues/95)
