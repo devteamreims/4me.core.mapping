@@ -99,3 +99,34 @@ Array of sector names. Used for suggestions.
 This represents sectors or sector groups that given sector can give.
 
 ## API Description
+### HTTP
+#### /status
+##### GET /
+Get app status
+#### /cwp
+##### GET /
+Get all CWPs
+##### GET /(:cwpId)
+Get a specific CWP
+##### GET /getMine
+Returns a specific CWP based on client IP address
+#### /sectors
+##### GET /
+Get every sector group defined
+#### /mapping
+##### GET /
+Get current control room map
+##### POST /
+Set control room map
+##### GET /cwp/(:cwpId)
+Get a sectors on a specific CWP
+##### GET /cwp/(:cwpId)/suggest
+Get suggestions on a specific CWP
+#### /reload
+##### GET /
+Force reload of all clients
+### WebSocket
+
+## Database persistence
+
+## Logging
