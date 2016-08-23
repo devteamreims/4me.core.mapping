@@ -36,32 +36,6 @@
       "HH",
       "UF",
       "KF",
-      "E",
-      "SE"
-    ],
-    "canAccept":[
-      "KD"
-    ],
-    "canGive":[
-      "2F",
-      "4E",
-      "4H",
-      "FIR"
-    ]
-  },
-  {
-    "name":"KDFE",
-    "elementarySectors":[
-      "UE",
-      "XE",
-      "KE",
-      "HE",
-      "UH",
-      "XH",
-      "KH",
-      "HH",
-      "UF",
-      "KF",
       "KD",
       "E",
       "SE"
@@ -71,8 +45,9 @@
     ],
     "canGive":[
       "KD2F",
-      "4E",
-      "4H",
+      "5E",
+      "5H",
+      "5EH",
       "FIR"
     ]
   },
