@@ -4,9 +4,10 @@
   "description": "Control room mapping API server",
   "main": "index.js",
   "scripts": {
-    "babel-node": "DEBUG=4me.* babel-node server.js",
+    "babel-node": "babel-node server.js",
     "start": "nodemon --exec npm run babel-node",
-    "test": "NODE_ENV=test mocha --compilers js:babel-register --recursive"
+    "test": "NODE_ENV=test mocha --compilers js:babel-register --recursive",
+    "dev": "DEBUG=4me.* npm run start"
   },
   "author": "Benjamin Beret <benjamin.beret@gmail.com>",
   "license": "ISC",
