@@ -1,0 +1,19 @@
+image: node
+
+cache:
+  paths:
+  - node_modules/
+
+before_script:
+  - npm install --silent
+
+stages:
+  - build
+  - test
+
+check_deps:
+  stage: build
+  script:
+    - npm run check-deps --silent
+  allow_failure: true
+
