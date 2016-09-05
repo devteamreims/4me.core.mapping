@@ -4,6 +4,7 @@
   "description": "Control room mapping API server",
   "main": "index.js",
   "scripts": {
+    "preversion": "git add Changelog.md",
     "babel-node": "babel-node server.js",
     "start": "nodemon --exec npm run babel-node",
     "test": "NODE_ENV=test mocha --compilers js:babel-register --recursive",
