@@ -3,7 +3,7 @@
     "id": 11,
     "suggestions": {
       "filteredSectors": [],
-      "preferenceOrder": ["RMS", "KDFE", "FIR"]
+      "preferenceOrder": ["RMS", "RFUE", "FIR"]
     },
     "backupedRadios": ["E", "SE", "KD", "HH", "HYR"]
   },

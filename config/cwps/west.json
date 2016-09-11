@@ -11,7 +11,7 @@
     "id": 31,
     "disabled": false,
     "suggestions": {
-      "filteredSectors": ["KDFE"],
+      "filteredSectors": ["RFUE"],
       "preferenceOrder": ["5R"]
     },
     "backupedRadios": ["UR", "XR", "KR"]
@@ -19,7 +19,7 @@
   {
     "id": 32,
     "suggestions": {
-      "filteredSectors": ["KDFE"],
+      "filteredSectors": ["RFUE"],
       "preferenceOrder": ["5R"]
     },
     "backupedRadios": ["KN", "HN", "UR", "XR", "KR", "HYR"]
@@ -27,7 +27,7 @@
   {
     "id": 33,
     "suggestions": {
-      "filteredSectors": ["KDFE"],
+      "filteredSectors": ["RFUE"],
       "preferenceOrder": ["5R"]
     },
     "backupedRadios": ["UR", "XR", "KR", "YR", "HYR"]
@@ -35,7 +35,7 @@
   {
     "id": 34,
     "suggestions": {
-      "filteredSectors": ["KDFE"],
+      "filteredSectors": ["RFUE"],
       "preferenceOrder": ["4N"]
     },
     "backupedRadios": ["KN", "HN", "YR", "HYR"]
@@ -43,7 +43,7 @@
   {
     "id": 35,
     "suggestions": {
-      "filteredSectors": ["KDFE"],
+      "filteredSectors": ["RFUE"],
       "preferenceOrder": ["4N"]
     },
     "backupedRadios": ["UN", "UB", "KN", "HN"]
@@ -51,7 +51,7 @@
   {
     "id": 36,
     "suggestions": {
-      "filteredSectors": ["KDFE"],
+      "filteredSectors": ["RFUE"],
       "preferenceOrder": ["4N"]
     },
     "backupedRadios": ["UN", "UB", "KN", "HN"]
@@ -59,7 +59,7 @@
   {
     "id": 37,
     "suggestions": {
-      "filteredSectors": ["KDFE"],
+      "filteredSectors": ["RFUE"],
       "preferenceOrder": ["4N"]
     },
     "backupedRadios": ["UN", "UB", "KN", "HN"]

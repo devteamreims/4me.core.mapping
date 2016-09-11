@@ -79,12 +79,11 @@ function _suggestOnEmptyCwp(cwp, cwpTree, sectorTree, map) {
 
   // Now that we have raw suggestions, we must filter them
   // Build our filter
-  debug(cwp.suggestions.filteredSectors);
   let elementarySectorsFilter = [];
   if(!_.isEmpty(cwp.suggestions.filteredSectors)) {
     elementarySectorsFilter = _.compact(_.flatten(
       cwp.suggestions.filteredSectors
-        .map((fs) => sectorTree.getSector(fs).elementarySectors || [])
+        .map(fs => _.get(sectorTree.getSector(fs), 'elementarySectors', []))
     ));
   }
 
