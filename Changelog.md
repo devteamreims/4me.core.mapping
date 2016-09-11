@@ -1,4 +1,4 @@
-# Master
+# v0.1.4
   * Update dependencies
   * Use Jest for testing
   * Plug in gitlab build pipeline
