@@ -7,7 +7,7 @@
     "preversion": "git add Changelog.md",
     "babel-node": "babel-node server.js",
     "start": "nodemon --exec npm run babel-node",
-    "test": "NODE_ENV=test mocha --compilers js:babel-register --recursive",
+    "test": "jest",
     "dev": "DEBUG=4me.* npm run start",
     "check-deps": "npm-check --production -s"
   },
@@ -32,5 +32,24 @@
     "npm-check": "^5.2.3",
     "socket.io": "^1.4.8",
     "socket.io-cookie-parser": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-jest": "^15.0.0",
+    "babel-polyfill": "^6.13.0",
+    "jest": "^15.1.1",
+    "mock-socket.io": "^1.1.0",
+    "nock": "^8.0.0",
+    "supertest": "^2.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupTestFrameworkScriptFile": "tests/testSetup.js",
+    "testPathDirs": [
+      "tests"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/tests/"
+    ]
   }
 }
