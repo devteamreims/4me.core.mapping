@@ -18,6 +18,14 @@ app.use(cookieParser());
 
 app.use(cors());
 
+/**
+ * Trust proxy, useful if behind nginx
+ * See here :
+ * http://expressjs.com/en/guide/behind-proxies.html
+ */
+
+app.set('trust proxy', true);
+
 app.io = io();
 app.io.use(ioCookieParser());
 

@@ -12,13 +12,6 @@ let debug = d('4me.index');
 let port = normalizePort(process.env.PORT || '3100');
 app.set('port', port);
 
-/**
- * Trust proxy, useful if behind nginx
- * See here :
- * http://expressjs.com/en/guide/behind-proxies.html
- */
-
-app.set('trust proxy', true);
 
 /**
  * Create HTTP server.
