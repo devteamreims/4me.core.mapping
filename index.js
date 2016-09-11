@@ -3,7 +3,6 @@ import express      from 'express';
 import path         from 'path';
 import cors from 'cors';
 import logger       from 'morgan';
-import cookieParser from 'cookie-parser';
 import bodyParser   from 'body-parser';
 import io from 'socket.io';
 import ioCookieParser from 'socket.io-cookie-parser';
@@ -14,7 +13,6 @@ let app = express();
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
 
 app.use(cors());
 
