@@ -1,7 +1,15 @@
 import bunyan from 'bunyan';
 
 
-export const opsLog = bunyan.createLogger({name: 'mapping-ops'});
+export const opsLog = bunyan.createLogger({
+  name: 'mapping-ops',
+  streams: [
+    {
+      level: process.env.NODE_ENV === 'test' ? bunyan.FATAL + 1 : 'info',
+      stream: process.stdout,
+    }
+  ],
+});
 
 export function logMappingClientConnect(payload = {}) {
   return opsLog.info({
