@@ -1,8 +1,8 @@
-import app from '../../index';
+import app from '../../../index';
 import request from 'supertest';
 
 // Mock configuration
-jest.mock('../../config/cwpIps', () => [{cwpId: 1, ipAddr: '1.2.3.4'}]);
+jest.mock('../../../config/cwpIps', () => [{cwpId: 1, ipAddr: '1.2.3.4'}]);
 
 describe('E3.1 : must allow clients to identify themselves', () => {
 

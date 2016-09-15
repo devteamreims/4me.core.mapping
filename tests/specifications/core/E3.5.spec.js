@@ -3,12 +3,12 @@ import io from 'socket.io-client';
 import _ from 'lodash';
 
 
-jest.mock('../../config/cwps', () => {
+jest.mock('../../../config/cwps', () => {
   const mockCwps = [{id: 1, type: "cwp"}, {id: 2, type: "cwp"}];
   return mockCwps;
 });
 
-jest.mock('../../config/sectors', () => {
+jest.mock('../../../config/sectors', () => {
   const mockSectors = [
     {name: "UR", elementarySectors: ["UR"]},
     {name: "XR", "elementarySectors": ["XR"]},
@@ -31,9 +31,9 @@ describe('E3.5 : must save and reload room configuration on restart', () => {
   test('load room configuration', () => {
     jest.resetModules();
 
-    const db = require('../../src/database')();
+    const db = require('../../../src/database')();
     db._setCache({map: newMap});
-    const app = require('../../index').default;
+    const app = require('../../../index').default;
 
     return request(app)
       .get('/mapping')
@@ -43,9 +43,9 @@ describe('E3.5 : must save and reload room configuration on restart', () => {
   test('save room configuration', () => {
     jest.resetModules();
 
-    const db = require('../../src/database')();
+    const db = require('../../../src/database')();
     db._setCache({map: newMap});
-    const app = require('../../index').default;
+    const app = require('../../../index').default;
 
     return Promise.resolve()
       .then(() =>

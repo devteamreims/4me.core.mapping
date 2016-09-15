@@ -1,15 +1,15 @@
-import app from '../../index';
+import app from '../../../index';
 import request from 'supertest';
 import io from 'socket.io-client';
 import _ from 'lodash';
 
 
-jest.mock('../../config/cwps', () => {
+jest.mock('../../../config/cwps', () => {
   const mockCwps = [{id: 1, type: "cwp"}, {id: 2, type: "cwp"}];
   return mockCwps;
 });
 
-jest.mock('../../config/sectors', () => {
+jest.mock('../../../config/sectors', () => {
   const mockSectors = [
     {name: "UR", elementarySectors: ["UR"]},
     {name: "XR", "elementarySectors": ["XR"]},

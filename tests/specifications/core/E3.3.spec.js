@@ -1,4 +1,4 @@
-import app from '../../index';
+import app from '../../../index';
 import request from 'supertest';
 import io from 'socket.io-client';
 import _ from 'lodash';
