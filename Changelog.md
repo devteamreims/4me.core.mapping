@@ -1,3 +1,7 @@
+# Master
+  * Implement integration tests
+  * Mute loggers in test env
+
 # v0.1.4
   * Update dependencies
   * Use Jest for testing
