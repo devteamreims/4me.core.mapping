@@ -81,7 +81,7 @@ class Map {
 
     let sector = sectorTree.getFromElementary(sectorsToBind);
 
-    let sectorName = sector.name || '';
+    let sectorName = _.get(sector, 'name', '');
 
     // Create our single mapping item
     let mappingItem = {
