@@ -2,7 +2,8 @@
 
 This software is a webservice providing an API (REST and WebSockets) in charge of handling links between Controler Working Positions (CWP) and sectors.
 
-[![Dependencies](https://david-dm.org/devteamreims/4me.core.mapping.svg)](https://david-dm.org/devteamreims/4me.core.mapping)
+[![build status](https://gitlab.com/devteamreims/4me.core.mapping/badges/master/build.svg)](https://gitlab.com/devteamreims/4me.core.mapping/commits/master)
+[![coverage report](https://gitlab.com/devteamreims/4me.core.mapping/badges/master/coverage.svg)](https://gitlab.com/devteamreims/4me.core.mapping/commits/master)
 
 ## How to build and run
 ```
