@@ -7,6 +7,13 @@ import {
   reqToCwpId,
 } from '../cwp/identifier';
 
+import {
+  logMappingClientConnect,
+  logCoreClientConnect,
+  logMappingClientDisconnect,
+  logCoreClientDisconnect,
+} from '../logger';
+
 
 let mySocketIo;
 
@@ -19,17 +26,29 @@ function init(ioSocket) {
   if(mySocketIo !== undefined) {
     mySocketIo.on('connect', function(socket) {
 
-      let cwpId = _.get(socket, 'handshake.query.cwp-id');
+      const cwpId = parseInt(_.get(socket, 'handshake.query.cwp-id'), 10);
+      const ipAddress = socket.request.headers['x-forwarded-for'] || socket.request.connection.remoteAddress;
 
-      if(cwpId !== undefined) {
-        cwpId = parseInt(cwpId);
+      if(cwpId) {
         debug(`Socket with id ${socket.id} now bound to CWP ${cwpId}`);
         // Decorate socket object with cwpId
         socket.cwpId = cwpId;
+        logCoreClientConnect(cwpId, {ipAddress});
       } else {
         socket.cwpId = null;
         debug(`Socket with id ${socket.id} is an unknown CWP`);
+        logMappingClientConnect({ipAddress});
       }
+
+      socket.on('disconnect', () => {
+        if(socket.cwpId) {
+          logCoreClientDisconnect(socket.cwpId);
+        } else {
+          logMappingClientDisconnect();
+        }
+      });
+
+
     });
   }
   return mySocketIo;

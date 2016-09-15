@@ -21,6 +21,19 @@ jest.mock('../src/database', () => () => {
   return api;
 });
 
+// Mock bunyan here
+// We add a specific stream to opsLog
+// We also put this stream in globals to ease access in tests
+import {opsLog} from '../src/logger';
+import bunyan from 'bunyan';
+const ringBuffer = new bunyan.RingBuffer({limit: 20});
+global.LOG_STREAM = ringBuffer;
+
+opsLog.addStream({
+  stream: ringBuffer,
+  type: 'raw',
+  level: 'trace',
+});
 
 // Mock socket.io here
 // Socket.io doesn't work in Jest environment
