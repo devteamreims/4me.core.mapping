@@ -1,24 +1,32 @@
 // Here we mock our database
 // We use simple setters and getters
-jest.mock('../src/database', () => () => {
-  const api = {};
-  let cache = [];
-  const _ = require('lodash');
+jest.mock('../src/database', () => {
+  let cache = {};
 
-  api.get = (key) => {
-    return Promise.resolve(cache[key]);
+  return () => {
+    const api = {};
+    const _ = require('lodash');
+
+    api.get = (key) => {
+      if(!cache[key]) {
+        // Simulate levelup API when key is not found
+        return Promise.reject({notFound: true});
+      }
+
+      return Promise.resolve(cache[key]);
+    };
+
+    api.put = (key, value) => {
+      cache[key] = _.cloneDeep(value);
+      return Promise.resolve(cache[key]);
+    };
+
+    api._setCache = (newCache) => {
+      cache = _.cloneDeep(newCache);
+    };
+
+    return api;
   };
-
-  api.put = (key, value) => {
-    cache[key] = _.cloneDeep(value);
-    return Promise.resolve(cache[key]);
-  };
-
-  api._setCache = (newCache) => {
-    cache = _.cloneDeep(newCache);
-  };
-
-  return api;
 });
 
 // Mock bunyan here
