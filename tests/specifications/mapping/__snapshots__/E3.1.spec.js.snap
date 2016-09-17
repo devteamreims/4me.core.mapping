@@ -1,0 +1,18 @@
+exports[`E3.1 : software integrates in 4ME framework produce log on new room configuration 1`] = `
+Object {
+  "map": Array [
+    Object {
+      "cwpId": 2,
+      "sectors": Array [
+        "UR",
+        "XR"
+      ]
+    }
+  ],
+  "msg": "",
+  "name": "mapping-ops",
+  "payload": Object {
+    "commitMap": true
+  }
+}
+`;
