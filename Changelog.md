@@ -1,4 +1,6 @@
 # Master
+  * Move to controlled docker image (devteamreims/4ME#140)
+  * Move to yarn as package manager (devteamreims/4ME#141)
   * Implement integration tests
   * Mute loggers in test env
 
