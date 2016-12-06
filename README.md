@@ -7,7 +7,8 @@ This software is a webservice providing an API (REST and WebSockets) in charge o
 
 ## How to build and run
 ```
-# npm install
+# git clone
+# yarn
 # npm start
 ```
 
