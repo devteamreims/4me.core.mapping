@@ -5,14 +5,14 @@ Object {
       "cwpId": 2,
       "sectors": Array [
         "UR",
-        "XR"
-      ]
-    }
+        "XR",
+      ],
+    },
   ],
   "msg": "",
   "name": "mapping-ops",
   "payload": Object {
-    "commitMap": true
-  }
+    "commitMap": true,
+  },
 }
 `;
