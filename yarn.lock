@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"4me.env@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/4me.env/-/4me.env-0.3.0.tgz#b31f9b156b6931a4736cebb2e233ca41d1f0ee19"
+"4me.env@0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/4me.env/-/4me.env-0.3.1.tgz#634eaa5751fd09d027527d9e69a637e4de2b740d"
   dependencies:
     flexbox-react "^4.1.0"
     invariant "^2.2.2"
@@ -1256,6 +1256,10 @@ dot-prop@^3.0.0:
   resolved "https://registry.yarnpkg.com/dot-prop/-/dot-prop-3.0.0.tgz#1b708af094a49c9a0e7dbcad790aba539dac1177"
   dependencies:
     is-obj "^1.0.0"
+
+dotenv@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-2.0.0.tgz#bd759c357aaa70365e01c96b7b0bec08a6e0d949"
 
 dtrace-provider@~0.8:
   version "0.8.0"

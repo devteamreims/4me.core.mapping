@@ -21,10 +21,11 @@ function forceReload(req, res, next) {
   let cwps = '*';
   if(req.query.cwps !== undefined) {
     cwps = _(req.query.cwps)
-      .map(parseInt)
+      .map(id => parseInt(id, 10))
       .compact()
       .value();
   }
+
   emitToCwps(cwps, 'force_reload');
 
   res.send('OK');

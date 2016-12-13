@@ -1,0 +1,32 @@
+exports[`map::model generateMap should generate a map 1`] = `
+Array [
+  Object {
+    "cwpId": 11,
+    "sectors": Array [
+      "UR",
+      "XR",
+      "KR",
+      "HYR",
+      "UB",
+      "UN",
+      "KN",
+      "HN",
+      "UE",
+      "XE",
+      "KE",
+      "HE",
+      "UH",
+      "XH",
+      "KH",
+      "HH",
+      "KD",
+      "UF",
+      "KF",
+      "E",
+      "SE",
+    ],
+  },
+]
+`;
+
+exports[`map::model set should validate map 1`] = `[Error: Sectors are missing from the map (UR,XR,KR,HYR,UB,UN,KN,HN,UE,XE,KE,HE,UH,XH,KH,HH,KD,UF,KF,E,SE)]`;

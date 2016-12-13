@@ -1,23 +1,25 @@
 import express from 'express';
 import mySocket from './socket';
 
-import {getSectorRouter} from './sector';
-import {getCwpRouter} from './cwp';
-import {getMappingRouter} from './mapping';
+// import {getSectorRouter} from './sector';
+// import {getCwpRouter} from './cwp';
+import { getMapRouter } from './map';
+//
+import identify from './client_identifier';
 import {getStatusRouter} from './status';
 import {getReloadRouter} from './reload';
 
-let routes = function(socketIo) {
+const routes = function(socketIo) {
 
   // Initialize our socketIo
   mySocket.init(socketIo);
 
-  let router = express.Router();
+  const router = express.Router();
 
 
-  router.use('/sectors', getSectorRouter());
-  router.use('/cwp', getCwpRouter());
-  router.use('/mapping', getMappingRouter());
+  // router.use('/sectors', getSectorRouter());
+  router.get('/identify', identify);
+  router.use('/map', getMapRouter());
   router.use('/reload', getReloadRouter());
 
   router.use('/status', getStatusRouter());

@@ -37,11 +37,11 @@ export function logCoreClientDisconnect(cwpId, payload = {}) {
   }, 'core socket client disconnected');
 }
 
-export function logNewMap(map, payload) {
+export function logNewMap(map) {
   return opsLog.info({
     map,
-    payload,
-  });
+    payload: {commitMap: true},
+  }, 'new map saved');
 
 }
 

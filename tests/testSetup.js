@@ -18,7 +18,7 @@ jest.mock('../src/database', () => {
 
     api.put = (key, value) => {
       cache[key] = _.cloneDeep(value);
-      return Promise.resolve(cache[key]);
+      return Promise.resolve();
     };
 
     api._setCache = (newCache) => {
@@ -27,6 +27,11 @@ jest.mock('../src/database', () => {
 
     return api;
   };
+});
+
+beforeEach(() => {
+  process.env.FOURME_ENV = 'LFEE';
+  delete process.env.FORCE_CLIENT_ID;
 });
 
 // Mock bunyan here
@@ -50,4 +55,3 @@ opsLog.addStream({
 //import mockIo from './mocks/socket.io';
 //jest.mock('socket.io', () => mockIo());
 // UPDATE : Socket.io works fine if 'jsdom' environment is set by Jest
-

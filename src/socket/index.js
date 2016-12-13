@@ -1,11 +1,6 @@
-"use strict";
 import d from 'debug';
 const debug = d('4me.socket');
 import _ from 'lodash';
-
-import {
-  reqToCwpId,
-} from '../cwp/identifier';
 
 import {
   logMappingClientConnect,
