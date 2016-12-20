@@ -1,4 +1,4 @@
-# Master
+# v1.0.0-0
   * Refactor the whole API, remove a bunch of unused stuff
   * Upgrade dependencies
 
