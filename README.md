@@ -50,8 +50,8 @@ Force reload of all clients
 #### > 'map_updated': newMap
 When a new control room map is set, a `map_updated` message is broadcasted to all clients with the new map as payload.
 
-#### > 'mapping:refresh': void
-When a new map is set, `mapping:refresh` will be brodcasted to all clients whose sectors / disabled status has changed.
+#### > 'clients_changed': [clientId]
+When a new map is set, `clients_changed` will be broadcasted to all socket clients. The payload will contain the ids of clients whose sectors / disabled status has changed.
 
 ## Database persistence
 *Work in progress*
