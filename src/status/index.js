@@ -25,7 +25,7 @@ function getStatus(req, res, next) {
 
   //const rawMap = {};
 
-  const isCoreSocket = (s) => ('cwpId' in s && s.cwpId !== null);
+  const isCoreSocket = (s) => ('clientId' in s && s.clientId !== null);
 
   const coreSockets = _(getSocket().of('/').connected)
     .map(s => {
@@ -33,7 +33,7 @@ function getStatus(req, res, next) {
         const ipAddress = s.request.headers['x-forwarded-for'] || s.request.connection.remoteAddress;
         return {
           id: s.id,
-          cwpId: s.cwpId,
+          clientId: s.clientId,
           ip: ipAddress,
         };
       }

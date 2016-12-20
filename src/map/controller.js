@@ -17,15 +17,25 @@ export function getMap(req, res, next) {
 export function postMap(req, res, next) {
   const map = req.body;
 
-  return set(map)
+  return get()
+    .then(oldMap =>
+      set(map)
+        .then(newMap => ({
+          newMap,
+          oldMap,
+        }))
+    )
     .then(
-      map => {
+      ({oldMap, newMap}) => {
         const socket = getSocket();
         if(socket && socket.emit) {
-          socket.emit('map_updated', map);
-          socket.emit('mapping:refresh');
+          // Emit the new map via socket
+          socket.emit('map_updated', newMap);
+          // Notify changed cwps that their sectors have changed
+          const changedClients = getChangedClientIds(oldMap, newMap);
+          socket.emit('clients_changed', changedClients);
         }
-        res.send(map);
+        res.send(newMap);
       },
       err => next(err),
     );

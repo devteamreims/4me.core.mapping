@@ -21,23 +21,24 @@ function init(ioSocket) {
   if(mySocketIo !== undefined) {
     mySocketIo.on('connect', function(socket) {
 
-      const cwpId = parseInt(_.get(socket, 'handshake.query.cwp-id'), 10);
+      const clientId = parseInt(_.get(socket, 'handshake.query.client-id'), 10);
+
       const ipAddress = socket.request.headers['x-forwarded-for'] || socket.request.connection.remoteAddress;
 
-      if(cwpId) {
-        debug(`Socket with id ${socket.id} now bound to CWP ${cwpId}`);
-        // Decorate socket object with cwpId
-        socket.cwpId = cwpId;
-        logCoreClientConnect(cwpId, {ipAddress});
+      if(clientId) {
+        debug(`Socket with id ${socket.id} now bound to 4ME Client ${clientId}`);
+        // Decorate socket object with
+        socket.clientId = clientId;
+        logCoreClientConnect(clientId, {ipAddress});
       } else {
-        socket.cwpId = null;
+        socket.clientId = null;
         debug(`Socket with id ${socket.id} is an unknown CWP`);
         logMappingClientConnect({ipAddress});
       }
 
       socket.on('disconnect', () => {
-        if(socket.cwpId) {
-          logCoreClientDisconnect(socket.cwpId);
+        if(socket.clientId) {
+          logCoreClientDisconnect(socket.clientId);
         } else {
           logMappingClientDisconnect();
         }
@@ -54,7 +55,7 @@ export function emitToCwps(targetCwps, message, data) {
     targetCwps = [parseInt(targetCwps)];
   }
 
-  const socketToCwpId = (s) => s.cwpId;
+  const socketToCwpId = (s) => s.clientId;
 
   const socketCollection = mySocketIo.of('/').connected;
 
