@@ -13,122 +13,55 @@ This software is a webservice providing an API (REST and WebSockets) in charge o
 ```
 
 ## Purpose of this software
-* Define all 4ME clients
-* Identify these clients based on their IP address
-* Define all sectors and sector groups
-* Maintain sector <-> cwp bindings
-* Offer splitting/collapsing suggestions based on the state of the control room
+* Identify 4ME clients based on their IP address
+* Maintain sector <-> cwp bindings (i.e control room map)
 * Persist control room map through app restart
 
 ## Configuration
+### Environment variables
+* `FOURME_ENV`: 4me.env identifier string (learn more here : https://gitlab.com/devteamreims/4me.env)
+* `FORCE_CLIENTID` (optional) : Override IP address identification of clients and force a specific clientId
 
-### Clients and CWPs
-#### Define all CWPs
-First you must configure all possible 4ME clients.
-
-This is done in ```config/cwps```.
-
-This configuration will then be imported in the app like so :
-```javascript
-import CWPs from ./config/cwps
-```
-
-You must export an array of objects like so :
-```javascript
-[
-  {
-    "id": 1,
-    "name": "CDS",
-    "type": "supervisor"
-  },
-  ...
-]
-```
-
-Must be unique, required
-
-##### name (string)
-Display name of the client
-Will default to ```P12``` where 12 is the ID of the CWP
-
-##### type (string)
-Valid types are :
-* supervisor : control room ops supervisor
-* tech-supervisor : technical supervisor
-* flow-manager : flow manager position
-* cwp (default) : normal CWP
-
-##### suggestions (object)
-4me.core.mapping is able to suggest specific sectors when opening/collapsing sector groups.
-* filteredSectors (array) : sectors that won't be suggested ever on this CWP
-* preferenceOrder (array) : affects suggestion order, will put preferred suggestions first
-
-This is only valid for ```cwp``` type.
-
-###### backupedRadios (array)
-Work in progress, undocumented feature.
-
-#### Client identification
-
-4me.core.mapping needs a way to identify clients. All clients run the same software, and therefore, can't identify themselves.
-
-4me.core.mapping will identify clients based on their IP adresses.
-
-This configuration is defined in ```config/cwpIps.js```
-
-This file must export an array of objects.
-
-Each object has a ```cwpId``` key which references a specific client id.
-Each object also has an ```ipAddr``` key.
-
-### Sectors
-```config/sectors``` default export must be an array of objects
-
-Each object stands for a known sector group.
-
-#### name (string)
-Name of the sector group (required)
-
-#### elementarySectors (array)
-Array of elementary sectors
-
-#### canAccept (array)
-Array of sector names. Used for suggestions.
-This represents which other sectors or sector groups given sector can accept.
-
-#### canGive (array)
-Array of sector names. Used for suggestions.
-This represents sectors or sector groups that given sector can give.
+### Configuration files
+* `<PROJECT_ROOT>/config/cwpIps.js`: define 4me client id to ip address bindings
 
 ## API Description
 ### HTTP
 #### /status
 ##### GET /
 Get app status
-#### /cwp
-##### GET /
-Get all CWPs
-##### GET /(:cwpId)
-Get a specific CWP
-##### GET /getMine
-Returns a specific CWP based on client IP address
-#### /sectors
-##### GET /
-Get every sector group defined
-#### /mapping
+#### GET /identify
+Returns the 4ME client bound to the requester IP. Overriden by `FORCE_CLIENTID`.  
+Returns 404 when no match could be found.
+
+#### /map
 ##### GET /
 Get current control room map
 ##### POST /
 Set control room map
-##### GET /cwp/(:cwpId)
+##### GET /(:cwpId)
 Get a sectors on a specific CWP
-##### GET /cwp/(:cwpId)/suggest
-Get suggestions on a specific CWP
+
 #### /reload
 ##### GET /
 Force reload of all clients
+
 ### WebSocket
+#### > 'map_updated': newMap
+When a new control room map is set, a `map_updated` message is broadcasted to all clients with the new map as payload.
+
+#### > 'clients_changed': [clientId]
+When a new map is set, `clients_changed` will be broadcasted to all socket clients. The payload will contain the ids of clients whose sectors / disabled status has changed.
 
 ## Database persistence
+*Work in progress*
+Uses [leveldb](https://github.com/google/leveldb) to store data on the filesystem. Data is stored in `<PROJECT_ROOT>/db` folder.
 
 ## Logging
+*Work in progress*  
+Uses [bunyan](https://github.com/trentm/node-bunyan) to provide JSON log output for OPS LOG.
+
+Dev log uses [debug](https://github.com/visionmedia/debug) for development debug. Turn on debugging by setting the `DEBUG` env variable to `4me.*`.
+```
+# DEBUG=4me.* npm start
+```

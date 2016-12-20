@@ -3,19 +3,6 @@ import request from 'supertest';
 
 import fp from 'lodash/fp';
 
-jest.mock('../../../config/cwps', () => {
-  const mockCwps = [{id: 1, type: "cwp"}, {id: 2, type: "cwp"}];
-  return mockCwps;
-});
-
-jest.mock('../../../config/sectors', () => {
-  const mockSectors = [
-    {name: "UR", elementarySectors: ["UR"]},
-    {name: "XR", "elementarySectors": ["XR"]},
-  ];
-  return mockSectors;
-});
-
 describe('E3.1 : software integrates in 4ME framework', () => {
 
   test('has a /status endpoint', () => {
@@ -26,13 +13,17 @@ describe('E3.1 : software integrates in 4ME framework', () => {
   });
 
   test('produce log on new room configuration', () => {
-    const newMap = [
-      {cwpId: 2, sectors: ["UR", "XR"]},
+    const validMap = [
+      {cwpId: 20, sectors: ['UR', 'XR']},
+      {cwpId: 21, sectors: ['KR', 'HYR']},
+      {cwpId: 22, sectors: ['UB', 'UN', 'KN', 'HN']},
+      {cwpId: 23, disabled: true},
+      {cwpId: 30, sectors: ['E', 'SE', 'KD', 'UF', 'KF', 'UH', 'XH', 'KH', 'HH', 'UE', 'XE', 'KE', 'HE']}
     ];
 
     return request(app)
-      .post('/mapping')
-      .send(newMap)
+      .post('/map')
+      .send(validMap)
       .expect(res => {
         const logRecord = fp.pipe(
           fp.get('LOG_STREAM.records'),
@@ -46,5 +37,3 @@ describe('E3.1 : software integrates in 4ME framework', () => {
 
 
 });
-
-

@@ -16,7 +16,7 @@ const cwpIps = [
     ipAddr: `${subnet}.211`,
   }, {
     cwpId: 3, // TECH SPVR
-    ipAddr: `::1`,
+    ipAddr: `${subnet}.123`,
   }, {
     cwpId: 11,
     ipAddr: `${subnet}.232`,

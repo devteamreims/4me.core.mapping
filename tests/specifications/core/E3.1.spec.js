@@ -8,7 +8,7 @@ describe('E3.1 : must allow clients to identify themselves', () => {
 
   test('allow clients to identify themselves', () => {
     return request(app)
-      .get('/cwp/getMine')
+      .get('/identify')
       .set('X-Forwarded-For', '1.2.3.4')
       .expect(200)
       .expect(res => expect(res.body.id).toBe(1));
@@ -16,12 +16,9 @@ describe('E3.1 : must allow clients to identify themselves', () => {
 
   test('reject unknown clients', () => {
     return request(app)
-      .get('/cwp/getMine')
+      .get('/identify')
       .set('X-Forwarded-For', '1.2.3.5')
-      .expect(500)
-      .expect(res => expect(res.body.message).toMatch(/unknown client/));
+      .expect(404);
   });
 
 });
-
-

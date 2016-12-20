@@ -42,7 +42,7 @@ describe('E3.4 : must log client connects and disconnects', () => {
 
   test('produce log on core client connect and disconnect', () => {
     const promise = new Promise((resolve, reject) => {
-      const socket = io.connect('http://localhost:5678', {query: 'cwp-id=1'});
+      const socket = io.connect('http://localhost:5678', {query: 'client-id=1'});
       socket.on('connect', () => {
         const logRecord = _.last(_.get(global, 'LOG_STREAM.records'));
         expect(logRecord.msg).toMatch(/client connected/);

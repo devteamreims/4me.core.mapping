@@ -2,14 +2,52 @@ exports[`E3.1 : software integrates in 4ME framework produce log on new room con
 Object {
   "map": Array [
     Object {
-      "cwpId": 2,
+      "cwpId": 20,
       "sectors": Array [
         "UR",
         "XR",
       ],
     },
+    Object {
+      "cwpId": 21,
+      "sectors": Array [
+        "KR",
+        "HYR",
+      ],
+    },
+    Object {
+      "cwpId": 22,
+      "sectors": Array [
+        "UB",
+        "UN",
+        "KN",
+        "HN",
+      ],
+    },
+    Object {
+      "cwpId": 23,
+      "disabled": true,
+    },
+    Object {
+      "cwpId": 30,
+      "sectors": Array [
+        "E",
+        "SE",
+        "KD",
+        "UF",
+        "KF",
+        "UH",
+        "XH",
+        "KH",
+        "HH",
+        "UE",
+        "XE",
+        "KE",
+        "HE",
+      ],
+    },
   ],
-  "msg": "",
+  "msg": "new map saved",
   "name": "mapping-ops",
   "payload": Object {
     "commitMap": true,
