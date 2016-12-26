@@ -1,6 +1,6 @@
 {
   "name": "4me.core.mapping",
-  "version": "1.0.0-0",
+  "version": "1.0.0",
   "description": "Control room mapping API server",
   "main": "index.js",
   "scripts": {
